@@ -41,5 +41,33 @@ Git is hands down the most popular version control system in existence. It was c
 Hopefully by now everyone has already downloaded a copy of git. If not go [here](http://git-scm.com/download).
 
 ```bash
-git
+$ git
+```
+
+```bash
+$ git init
+```
+check status
+```bash
+$ git status
+```
+
+```bash
+$ git add FILE_NAME
+```
+check status
+```bash
+$ git status
+```
+
+```bash
+$ git commit -m "Put Message Here"
+```
+
+```bash
+$ git log
+```
+
+```bash
+$ git branch BRANCH_NAME
 ```
