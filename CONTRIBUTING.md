@@ -1,7 +1,7 @@
 
 ### Contributing 
 
-Before commiting run `cp pre-commit .git/hooks/`
+Before commiting run `cp .pre-commit .git/hooks/pre-commit`, note the lack of a dot.
 
 Below is an outline of how to add notes to this repository, navigate and develop the folder structure, as well as notes on maintaining the *Topical Index* above.
 
