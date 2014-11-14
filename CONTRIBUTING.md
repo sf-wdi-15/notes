@@ -1,6 +1,8 @@
 
 ### Contributing 
 
+Before commiting run `mv pre-commit .git/hooks/`
+
 Below is an outline of how to add notes to this repository, navigate and develop the folder structure, as well as notes on maintaining the *Topical Index* above.
 
 
