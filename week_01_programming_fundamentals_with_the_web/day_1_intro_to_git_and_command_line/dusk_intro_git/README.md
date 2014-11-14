@@ -71,3 +71,28 @@ $ git log
 ```bash
 $ git branch BRANCH_NAME
 ```
+
+##And now Github! Woooo!
+
+###Cloning a repo
+Go to a github repo
+Find the repos URL
+
+```bash
+$ git clone URL
+```
+and now we have a copy on our computer
+
+###Forking a repo
+we use for to make our own copy of the repo that is separate from the original one
+
+So we fork.
+Then clone our copy
+make changes
+commit our changes
+
+###Push
+
+```bash
+$ git push origin master
+```
