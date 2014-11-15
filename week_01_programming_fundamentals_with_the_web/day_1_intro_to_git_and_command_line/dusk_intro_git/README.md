@@ -124,28 +124,48 @@ nothing added to commit but untracked files present (use "git add" to track)
 ```
 
 ```bash
-$ git add FILE_NAME
+$ git add README.md
 ```
-check status
+
+Then checking the status will give me something like
+
 ```bash
 $ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   README.md
 ```
+
+Now we're going to commit those changes
 
 ```bash
 $ git commit -m "Put Message Here"
+[master (root-commit) 37c5f18] Put Message here
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 README.md
 ```
+
+Now lets check the log to make sure everything is there:
 
 ```bash
 $ git log
-```
+commit 37c5f185b7a758feba50845ed16782c6d64db622
+Author: Michael Desa <michael.desa@ga.co>
+Date:   Fri Nov 14 16:04:36 2014 -0800
 
-```bash
-$ git branch BRANCH_NAME
+    Put Message here
 ```
 
 ##And now Github! Woooo!
 
-###Cloning a repo
+###Create a Repo
+
+###Cloning a repo clone a friends
 Go to a github repo
 Find the repos URL
 
