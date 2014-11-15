@@ -12,17 +12,19 @@ Students will be able to...
 ###What is version control??
 So before we begin I'd like you to copy this html into a file called index.html
 ```html
-<html>
-	<head>
-		<style>
 	
-		</style>
-	</head>
-
-	<body>
-
-	</body>
-</html>
+	<html>
+		<head>
+			<style>
+		
+			</style>
+		</head>
+	
+		<body>
+	
+		</body>
+	</html>
+	
 ```
 
 Make some changes. Add a header with your name and a list of your favorite things.
@@ -83,12 +85,42 @@ to read about a specific subcommand or concept.
 
 This is a list of some of the most common git commands. If you're ever looking at a good place to get started, or you dont know what command to use give the git command a try.
 
-```bash
+Okay. So make a directory that you're going to work in and change into it. And type:
+
+```bash 
 $ git init
 ```
-check status
+We should get some sort of out put like this:
+
+```bash
+Initialized empty Git repository in ... PATH_TO_INITIALIZED_REPO
+```
+
+Now that we've initialized the repository lets add a Readme file.
+
+```bash
+$ touch README.md
+```
+
+Now that there's a README.md file in our folder. lets see what the status of our git repo is. run the command status like this:
+
 ```bash
 $ git status
+```
+
+Which should output something like:
+
+```bash
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
 ```
 
 ```bash
@@ -120,6 +152,7 @@ Find the repos URL
 ```bash
 $ git clone URL
 ```
+
 and now we have a copy on our computer
 
 ###Forking a repo
