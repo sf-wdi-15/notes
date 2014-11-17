@@ -3,7 +3,7 @@
 format_error = false
 
 def puts_formating_errors(folders, prefix="\t")
-  if prefix == "\t"
+  if prefix == "\t" && !folders.empty?
     puts "\033[33mFormatting Errors:\033[0m"
   end
 
