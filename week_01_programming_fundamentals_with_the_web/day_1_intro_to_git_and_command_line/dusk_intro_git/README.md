@@ -33,18 +33,31 @@ So before we begin I'd like you to copy this html into a file called index.html
 
 Make some changes. Add a header with your name and a list of your favorite things.
 
-Now that you've got something pair up with a neighbor and lets combine the two html files into one.
+Now that you've got something, pair up with a neighbor and let's combine the two html files into one.
 
 Let's imagine what would happen if we kept repeating this process until we have every student and their favorite things in one file.
 
+<<<<<<< Updated upstream
 > *This sucks right? Why do you guys think that this sucks? What could we do to make it better?*
+||||||| merged common ancestors
+This sucks right? Why do you guys think that this sucks? What could we do to make it better?
+=======
+This sucks, right? Why do you guys think that this sucks? What could we do to make it better?
+>>>>>>> Stashed changes
 
+<<<<<<< Updated upstream
 ### Queue in Git!
+||||||| merged common ancestors
+###Queue in Git!
+=======
+###Queue in Git!
+
+>>>>>>> Stashed changes
 Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
 Git is hands down the most popular version control system in existence. It was created by Linus Torvalds, the same guy that made the kernel to the GNU Linux operating system.
 
-Hopefully by now everyone has already downloaded a copy of git. If not go [here](http://git-scm.com/download).
+Hopefully by now everyone has already downloaded a copy of git. If not go to [here](http://git-scm.com/download).
 
 Open up command line and type in the command
 ```bash
@@ -87,14 +100,14 @@ concept guides. See 'git help <command>' or 'git help <concept>'
 to read about a specific subcommand or concept.
 ```
 
-This is a list of some of the most common git commands. If you're ever looking at a good place to get started, or you dont know what command to use give the git command a try.
+This is a list of some of the most common git commands. If you're ever looking at a good place to get started, or you don't know what command to use, give the git command a try.
 
 Okay. So make a directory that you're going to work in and change into it. And type:
 
 ```bash 
 $ git init
 ```
-We should get some sort of out put like this:
+We should get some sort of output like this:
 
 ```bash
 Initialized empty Git repository in ... PATH_TO_INITIALIZED_REPO
@@ -106,7 +119,7 @@ Now that we've initialized the repository lets add a Readme file.
 $ touch README.md
 ```
 
-Now that there's a README.md file in our folder. lets see what the status of our git repo is. run the command status like this:
+Now that there's a README.md file in our folder, lets see what the status of our git repo is. Run the command 'status' like this:
 
 ```bash
 $ git status
@@ -154,7 +167,7 @@ $ git commit -m "Put Message Here"
  create mode 100644 README.md
 ```
 
-Now lets check the log to make sure everything is there:
+Now let's check the log to make sure everything is there:
 
 ```bash
 $ git log
