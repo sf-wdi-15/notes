@@ -1,6 +1,7 @@
 # Introduction to Git & Github
 
-##Objectives
+## Objectives
+
 Students will be able to...
 
 1. identify the use cases for version control
@@ -9,10 +10,13 @@ Students will be able to...
 4. utilize Github as a collaborative tool
 
 
-###What is version control??
+### What is version control??
+
 So before we begin I'd like you to copy this html into a file called index.html
-```html
-	
+
+```
+
+	<!DOCTYPE html>
 	<html>
 		<head>
 			<style>
@@ -33,9 +37,10 @@ Now that you've got something pair up with a neighbor and lets combine the two h
 
 Let's imagine what would happen if we kept repeating this process until we have every student and their favorite things in one file.
 
-This sucks right? Why do you guys think that this sucks? What could we do to make it better?
+> *This sucks right? Why do you guys think that this sucks? What could we do to make it better?*
 
-###Queue in Git!
+### Queue in Git!
+
 Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
 Git is hands down the most popular version control system in existence. It was created by Linus Torvalds, the same guy that made the kernel to the GNU Linux operating system.
