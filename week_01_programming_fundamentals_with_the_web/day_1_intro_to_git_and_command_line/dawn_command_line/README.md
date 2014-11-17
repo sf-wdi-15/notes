@@ -1,10 +1,8 @@
-ReadMe.md
-
 # Living in the Command Line
 
 | Objectives |
 | :--- |
-| Navigate the terminal and have an understanding of the tools available to you in it. |
+| Navigate the terminal and have an understanding of the tools available in it. |
 
 
 # Background
@@ -14,18 +12,18 @@ Web programmers have to live on the command line.  It gives us fast, reliable, a
 Regarding scripts which you may find on the web while searching for solutions, assume they are going to do something bad
 
 Important Note:
-*** You should not copy / paste scripts from web pages and run them in your terminal until you have read them and understand what they do, bad things can happen, particularly with sudo and su commands ***
+*** You should not copy / paste scripts from web pages and run them in your terminal until you have read them and understand what they do, bad things can happen, particularly with `sudo` and `su` commands ***
 
 #Topics
 
 * Command Line Overview
-  * cd
-  * mkdir
-  * touch
-  * ls
-  * rm
-  * grep
-  * cat, less
+  * `cd`
+  * `mkdir`
+  * `touch`
+  * `ls`
+  * `rm`
+  * `grep`
+  * `cat`, `less`
   * `|` (pipe), `cat`, `>`, `>>`
   * Extras
     * `fortune`, `wall-cat`, `wget`
@@ -46,14 +44,14 @@ Important Note:
 * [File Manipulation](#files)
   * `mkdir`
   * Editing Files   
-  * echo, Redirection and Piping
+  * `echo`, Redirection and Piping
   * Moving, Copying and Removing
 * [Command Execution](#execution)  
   * `$PATH`
   * `which ruby`
 * [Review](#review)
   * Getting Help
-  * Bonus Topics
+  * Bonus Topics /
   Further Reading
 
 
@@ -64,7 +62,7 @@ Terminal is a modern version of an 'original' `User Interface` for unix based co
 
 Don't worry though, with a bit of practice you'll be flying around like a pro!
 
-Although they technically mean slightly different things, the following terms are synonyous with the Terminal Environment
+Although they technically mean slightly different things, the following terms are synonymous with the Terminal Environment
 
   *  Shell
   *  bash ('Bourne-Again shell', although I've haven't heard that used recently)
@@ -79,13 +77,15 @@ Although they technically mean slightly different things, the following terms ar
   *  [UNIX Shell](http://en.wikipedia.org/wiki/Unix_shell)
 
 ## Opening the Terminal
+
 __Follow Along:__
 
-1.  In the top right of the screen click the Magnifing Glass icon to bring up 'Spotlight' and type 'Terminal'
-2.  Once Terminal starts locatte the icon in the doc and select `Options->Keep In Dock` so that it's always handy
+1.  In the top right of the screen click the Magnifying Glass icon to bring up 'Spotlight' and type 'Terminal'. (You can open this quickly by hitting `CMD + SPACE`.)
+2.  Once Terminal starts locate the icon in the doc and select `Options->Keep In Dock` so that it's always handy
 
 
 #<a name="current"></a>Current Working Directory
+
 The file structure you see in the Terminal is the same as the one you see in the `Finder` application. Finder tends to hide some of the folders from you to keep things simple for most users, but everywhere that you go in Finder is accessible through 'Terminal'. 
 
 
@@ -96,15 +96,15 @@ Typically the shell will start in your `HOME` directory, each user has their own
 __Follow Along:__
 
     [anil:~]$ pwd
-    /Users/anil
+    /Users/del
   
-For me this is `Users/anil`, what is the __current working directory__ of your shell process? 
+For me this is `Users/del`, what is the __current working directory__ of your shell process? 
 
 Wherever we are, `pwd`, short for __print working directory__, will show us what directory we are in.
 
 __Follow Along:__
 
-    [anil:~]$ open .
+    [del:~]$ open .
     
 Wherever we are, `open .`, opens a `Finder` window in the current directory, this can be handy sometimes
 
@@ -152,7 +152,7 @@ Personally I find this a little difficult to read so I use the long form:
 
 Now I can see a lot more clearly what files are in my current working directory. Some of these items are files, some are directories and in my case also have a `link` which we'll deal with on another day :)
 
-The ls command can take a directory as an argument
+The `ls` command can take a directory as an argument
 
     [anil:~]$ ls -l Documents/
     total 40360
@@ -160,13 +160,14 @@ The ls command can take a directory as an argument
     -rw-r--r--@  1 anil  staff  8154896 Feb 27 10:57 Profile.png
     -rw-r--r--@  1 anil  staff  6258658 Feb 27 10:57 Profile2.png
 
-The ls command can also take a wildcard as an argument
+The `ls` command can also take a wildcard as an argument
 
     [anil:~]$ ls -l Documents/*.png
     -rw-r--r--@ 1 anil  staff  8154896 Feb 27 10:57 Documents/Profile.png
     -rw-r--r--@ 1 anil  staff  6258658 Feb 27 10:57 Documents/Profile2.png
 
 ##Hidden Files
+
 Have you ever heard of `hidden files`? Well it's true, they are real! and we can see them:
   
     [anil:~]$ ls -la
@@ -315,7 +316,7 @@ __Try This__
     [anil:~]$ cd ~
     [anil:~]$ mkdir living_room
 
-What command can you use to see the results of you handywork? 
+What command can you use to see the results of you handiwork? 
 
 ##Adding and Editing Files
 
@@ -344,7 +345,7 @@ Now try `ls -la` again.  Do you see the `books.txt` file?  Look at the contents 
 
 ## File Permissions
 The column on the left e.g.: `-rwxr-xr-x` displays the files' permissions. That is whether or not you can read, write or execute the file
-The display also includesthe type of file `d` for directory, `l` for link, `-` for files
+The display also includes the type of file `d` for directory, `l` for link, `-` for files
 
 Here's a tutorial on file permissions, if you're interested in unpacking that column: [http://en.flossmanuals.net/command-line/permissions/](http://en.flossmanuals.net/command-line/permissions/)
 
@@ -459,7 +460,7 @@ The shell finds these commands by looking at the PATH variable in the shell.  `e
 __Try This__
 
     [anil:~]$ echo $PATH
-    /Uers/anil/.rvm/gems/ruby-2.1.0/bin:/Users/anil/.rvm/gems/ruby-2.1.0@global/bin:/Users/anil/.rvm/rubies/ruby-2.1.0/bin:~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/anil/.rvm/bin
+    /Users/anil/.rvm/gems/ruby-2.1.0/bin:/Users/anil/.rvm/gems/ruby-2.1.0@global/bin:/Users/anil/.rvm/rubies/ruby-2.1.0/bin:~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/anil/.rvm/bin
 
 
 #<a name="review"></a>Review
@@ -527,7 +528,7 @@ Just made a git commit without a comment? You may find yourself in `vi` hell. Yo
 * `export EDITOR='subl -w'`
 
 ### Different Types of Shell
-You'll mostly be using `bash` as your shell, but there are other similiar programs which you may see at work
+You'll mostly be using `bash` as your shell, but there are other similar programs which you may see at work
 
 * [http://unixhelp.ed.ac.uk/shell/oview2.html](http://unixhelp.ed.ac.uk/shell/oview2.html)
 
