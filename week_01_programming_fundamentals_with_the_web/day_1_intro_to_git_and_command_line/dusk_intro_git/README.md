@@ -40,7 +40,6 @@ Let's imagine what would happen if we kept repeating this process until we have 
 > *This sucks right? Why do you guys think that this sucks? What could we do to make it better?*
 
 ### Queue in Git!
-
 Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
 Git is hands down the most popular version control system in existence. It was created by Linus Torvalds, the same guy that made the kernel to the GNU Linux operating system.
