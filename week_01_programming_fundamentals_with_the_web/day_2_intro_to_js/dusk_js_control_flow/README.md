@@ -305,7 +305,22 @@ for (var index = 0; index < friends.length; index = index + 1) {
 	```
 
 
-3. You have a list of numbers below that somehow got shuffled and one is missing. Luckily you know that the numbers were from `1 to 100`. Find the missing number. 
+3. Word counting:
+	a. Count the number of space separated words in a string (Hint: do this with and without a `for` loop.).
+	b. Count the number of words that in a string that have the letter `a` in them.
+
+
+4. Capitalize the first letter in every word in a string, i.e
+	
+	```
+	"hello world" => "Hello World"	
+	
+	```
+
+5. Find the largest number in a hardcoded array using a for loop. Find the smallest number in a hardcoded array.
+
+
+6. You have a list of numbers below that somehow got shuffled and one is missing. Luckily you know that the numbers were from `1 to 100`. Find the missing number. 
 
 	```
 	var numbers = [56, 74, 31, 89, 8, 
@@ -328,7 +343,13 @@ for (var index = 0; index < friends.length; index = index + 1) {
 					77, 20, 54, 80, 87, 
 					13, 94, 98, 93, 62, 
 					35, 33, 11, 52];
-	
+					
+					
+					
 	```
 	
-4. You have two list of friends 
+7. Find the `sum` of the values in an array and the `average`. 
+8. Find the average of only the odd numbers in an array.
+9. Write a loop that creates an array of `100` random integers (not decimal numbers).
+10. Find the numbers in common in two different lists of numbers.
+
