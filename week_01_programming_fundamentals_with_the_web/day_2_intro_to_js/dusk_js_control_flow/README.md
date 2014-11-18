@@ -353,3 +353,33 @@ for (var index = 0; index < friends.length; index = index + 1) {
 9. Write a loop that creates an array of `100` random integers (not decimal numbers).
 10. Find the numbers in common in two different lists of numbers.
 
+### While loops
+
+The while loop is the other type of repetitive control flow structure. However, `for` handled most of the general iteration tasks we could hope to perform. You should hardly ever need just a `while` loop. It will run so long as a condition is true.
+
+
+```
+while (true) {}
+
+```
+
+This should be enough to break a browser.
+
+In the browser try the [`prompt`](https://developer.mozilla.org/en-US/docs/Web/API/Window.prompt) function out. 
+
+
+#### Exercise 
+
+1. Re-write exercise `1` for `for` loops using a `while` loop.
+2. Use `prompt` and the `while` loop create an array of `5` names.
+3. Use `prompt` to check if a user wants to continue looping. If `yes` print `hello`, and if anything else print `goodbye` and `stop` looping.
+
+
+### For ... In
+
+
+A `for... in` loop is a way to iterate through an object. Go to [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in) and read about how to use it. 
+
+#### Exercise
+
+1. Come up with a use case for the `for ... in` loop and share it with your neighbor. 
