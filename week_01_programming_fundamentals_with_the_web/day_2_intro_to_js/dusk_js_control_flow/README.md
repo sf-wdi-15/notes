@@ -26,7 +26,6 @@
   * While loop
   	* generic condition
   * Switch case
-  * Refactoring Conds
   
 ------
 
@@ -372,7 +371,8 @@ In the browser try the [`prompt`](https://developer.mozilla.org/en-US/docs/Web/A
 
 1. Re-write exercise `1` for `for` loops using a `while` loop.
 2. Use `prompt` and the `while` loop create an array of `5` names.
-3. Use `prompt` to check if a user wants to continue looping. If `yes` print `hello`, and if anything else print `goodbye` and `stop` looping.
+3. Use [`confirm`](https://developer.mozilla.org/en-US/docs/Web/API/Window.confirm) to check if a user wants to continue looping. If `yes` print `hello`, and if anything else print `goodbye` and `stop` looping.
+4. Implement a guessing game using `prompt` and `while`.
 
 
 ### For ... In
