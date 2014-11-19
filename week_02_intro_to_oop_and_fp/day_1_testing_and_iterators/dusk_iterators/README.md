@@ -80,7 +80,7 @@ console.log(multer(5,2);
 
 ##Examples of my personal favorite functional programming languages
 1. Lisp
-  a. Scheme
-  b. Clojure
-  c. Common Lisp
+  * Scheme
+  * Clojure
+  * Common Lisp
 2. Haskell
