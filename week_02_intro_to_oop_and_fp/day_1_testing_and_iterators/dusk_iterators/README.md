@@ -74,9 +74,38 @@ console.log(multer(5,2);
 
 ####forEach
 
+```javascript
+var nums = [1,2,3,4,5];
+
+nums.forEach(function(element, index, array) {
+    console.log(array);
+    console.log('nums[' + index + '} = ' + element');
+});
+
+console.log(nums);
+
+nums.forEach(function(element, index, array) {
+  console.log(array);
+  array[index] = element + 5;
+  console.log(array);
+});
+
+console.log(nums);
+```
+
+**Exercise:** Lets build our own forEach function called `each` that does the same thing as forEach.
+
 ####map
 
+Build a function `map` that takes in an array and a function and applies the function on every element in the array.
+
 ####reduce
+
+Build a function `reduce` that takes in an array and a function that combines all the elements into one.
+
+####filter
+
+**Exercise:** lets build a function that filters out elements of an array that dont meet a condition.
 
 ##Examples of my personal favorite functional programming languages
 1. Lisp
