@@ -13,8 +13,59 @@ In computer science, functional programming is a programming paradigm, a style o
 ##What does that mean? Haven't we already been doing that?
 
 ###First class functions
+Having first class functions are a feature that's built into a programming languages. So there are programming languages that have first-class functions, like Javascript or Ruby, and those that dont't like, C or Java (technically Java kind of has them now, but that's not important).
+
+All that is meant by first-class functions is that we can pass functions as arguments to other functions. Just like any other type of value.
+
+```javascript
+var run = function(fn) {
+return fn();
+};
+
+run(function() { console.log("Hello, World"); });
+```
 
 ###Higher order functions
+
+functions that return other functions.
+
+Function that adds a number k to a number l
+```javascript
+var add = function(k) {
+return function(l) {
+return l + k;
+};
+};
+
+var add5 = add(5);
+console.log(add5(10));
+```
+
+function that returns a function if m > n
+
+```javascript
+var greaterThan = function(n) {
+return function(m) { return m > n; };
+};
+
+var greaterThan10 = greaterThan(10);
+console.log(greaterThan10(11));
+
+```
+
+function that takes a function that returns a function on two parameters
+```javascript
+var calc = function(fn){
+return function(a,b) {
+return fn(a,b);
+};
+
+var adder = calc(function(x,y) { return x+y; });
+console.log(adder(1,2));
+
+var multer = calc(function(a,b) { return a*b;});
+console.log(multer(5,2);
+```
 
 ###Iterators
 
