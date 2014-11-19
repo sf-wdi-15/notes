@@ -79,7 +79,7 @@ var nums = [1,2,3,4,5];
 
 nums.forEach(function(element, index, array) {
     console.log(array);
-    console.log('nums[' + index + '} = ' + element');
+    console.log('nums[' + index + '} = ' + element);
 });
 
 console.log(nums);
