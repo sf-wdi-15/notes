@@ -19,7 +19,7 @@ All that is meant by first-class functions is that we can pass functions as argu
 
 ```javascript
 var run = function(fn) {
-return fn();
+  return fn();
 };
 
 run(function() { console.log("Hello, World"); });
@@ -32,9 +32,9 @@ functions that return other functions.
 Function that adds a number k to a number l
 ```javascript
 var add = function(k) {
-return function(l) {
-return l + k;
-};
+  return function(l) {
+    return l + k;
+  };
 };
 
 var add5 = add(5);
@@ -45,7 +45,9 @@ function that returns a function if m > n
 
 ```javascript
 var greaterThan = function(n) {
-return function(m) { return m > n; };
+  return function(m) {
+    return m > n;
+  };
 };
 
 var greaterThan10 = greaterThan(10);
@@ -56,8 +58,9 @@ console.log(greaterThan10(11));
 function that takes a function that returns a function on two parameters
 ```javascript
 var calc = function(fn){
-return function(a,b) {
-return fn(a,b);
+  return function(a,b) {
+    return fn(a,b);
+  };
 };
 
 var adder = calc(function(x,y) { return x+y; });
