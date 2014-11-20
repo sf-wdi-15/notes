@@ -110,7 +110,7 @@ console.log(x)
 
 ## More On Environments
 
-Every functoin is created in some sort of environment. Let's examine this first.
+Every function is created in some sort of environment. Let's examine this first.
 
 An onion like example...
 
@@ -124,7 +124,7 @@ var myOuterFunc = function (x){
   return myInnerFunc;
 };
 
-myFunc(1)(2)
+myOuterFunc(1)(2)
 ```
 
 What does this return? Why?
@@ -299,7 +299,7 @@ Let's implement a loop function
 
 ```
   var loop = function(count){
-    if (x < 10) {
+    if (count < 10) {
       console.log(x);
       count++
       loop(count);
