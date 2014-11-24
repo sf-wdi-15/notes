@@ -115,7 +115,7 @@ console.log("map nums:", map_nums);
 console.log("val     :", val);
 ```
 
-*Exercise:* Build a version of map that is desctructive.
+**Exercise:** Build a version of map that is desctructive.
 
 ####reduce
 
