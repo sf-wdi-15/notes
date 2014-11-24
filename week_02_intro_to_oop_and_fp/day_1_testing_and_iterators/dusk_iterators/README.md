@@ -13,7 +13,7 @@ In computer science, functional programming is a programming paradigm, a style o
 ##What does that mean? Haven't we already been doing that?
 
 ###First class functions
-Having first class functions are a feature that's built into a programming languages. So there are programming languages that have first-class functions, like Javascript or Ruby, and those that dont't like, C or Java (technically Java kind of has them now, but that's not important).
+A function is called first class if it can be passed as an argument to another function. This feature isn't found is every programming language: there are programming languages that have first-class functions, like Javascript or Ruby, and those that dont't like, C or Java (technically Java kind of has them now, but that's not important).
 
 All that is meant by first-class functions is that we can pass functions as arguments to other functions. Just like any other type of value.
 
