@@ -144,7 +144,7 @@ console.log('ans:', ans2);
 
 ####filter
 
-**Exercise:** Build a function **reduce** that has two parameters: an array and a function that returns a boolean value. The function **reduce** should return an array of values that yielded true under the application of the boolean function provided as a parameter. Essentially the idea is to filter out elements of an array that don't satisfy some condition.
+**Exercise:** Build a function `filter` that has two parameters: an array and a function that returns a boolean value. The function `reduce` should return an array of values that yielded true under the application of the boolean function provided as a parameter. Essentially the idea is to filter out elements of an array that don't satisfy some condition.
 
 ##Examples of my personal favorite functional programming languages
 1. Lisp
