@@ -97,11 +97,50 @@ console.log(nums);
 
 ####map
 
-Build a function `map` that takes in an array and a function and applies the function on every element in the array.
+Lets build a function `map` that takes in an array and a function and applies the function on every element in the array.
+
+```javascript
+var map = function(nums, fn) {
+  var arr = [];
+  for_each(nums, function(el,id,ar) {
+    arr[id] = fn(el);
+  });
+  return arr;
+};
+
+var map_nums = [10,2,3,1,5,2];
+
+var val = map(map_nums, function(x) { return x + 5; });
+console.log("map nums:", map_nums);
+console.log("val     :", val);
+```
+
+*Exercise:* Build a version of map that is desctructive.
 
 ####reduce
 
-Build a function `reduce` that takes in an array and a function that combines all the elements into one.
+Lets build a function `reduce` that takes in an array, a function that combines elements of the array pairwise, and an optional start value.
+
+```javascript
+var reduce = function(arr, fn, start) {
+  var result = start || arr[0];
+  for_each(arr.slice(1), function(el,id,ar) {
+    result = fn(result,el);
+  });
+  return result;
+};
+
+var xs =[1,2,3,4,5];
+var ans = reduce(xs,function(x,y) { return x + y; }, 0);
+console.log('xs:', xs);
+console.log('ans:', ans);
+
+//WITHOUT START
+var xs =[1,2,3,4,5];
+var ans2 = reduce(xs,function(x,y) { return x + y; });
+console.log('xs:', xs);
+console.log('ans:', ans2);
+```
 
 ####filter
 
