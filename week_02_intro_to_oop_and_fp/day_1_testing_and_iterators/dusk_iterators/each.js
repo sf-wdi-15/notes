@@ -26,9 +26,10 @@ for_each(nums, function(el,id,ar) {
   console.log(ar);
 });
 
+//MAP NOT DESCRUCTIVE
+
 console.log("\nMAP");
 
-//MAP NOT DESCRUCTIVE
 var map = function(nums, fn) {
   var arr = [];
   for_each(nums, function(el,id,ar) {
@@ -43,9 +44,10 @@ var val = map(map_nums, function(x) { return x + 5; });
 console.log("map nums:", map_nums);
 console.log("val     :", val);
 
+//MAP DESCRUCTIVE
+
 console.log("\nDESTRUCTIVE MAP");
 
-//MAP DESCRUCTIVE
 var dmap = function(nums, fn) {
   var arr = nums;
   for_each(arr, function(el,id,ar) {
@@ -61,9 +63,10 @@ var dval = dmap(dnums, function(x) { return x + 5; });
 console.log("dmap_nums:", dnums);
 console.log("dval     :", dval);
 
+//REDUCE
+
 console.log("\nREDUCE");
 
-//REDUCE
 var reduce = function(arr, fn, start) {
   var result = start || arr[0];
   for_each(arr.slice(1), function(el,id,ar) {
@@ -82,3 +85,22 @@ var xs =[1,2,3,4,5];
 var ans2 = reduce(xs,function(x,y) { return x + y; });
 console.log('xs:', xs);
 console.log('ans:', ans2);
+
+//FILTER
+console.log('\nFILTER');
+
+var filter = function(arr,fn) {
+  var result = [];
+  for_each(arr,function(el,id,ar) {
+    var cond = fn(el);
+    if (cond) result.push(el);
+  });
+  return result;
+};
+
+var ts = [10,2,4,5,2,1,42,5,2,53];
+var lessThan10 = filter(ts, function(x) {
+  return x < 10;
+});
+console.log('ts:', ts);
+console.log('lessThan10:', lessThan10);
