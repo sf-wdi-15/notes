@@ -64,13 +64,62 @@ NPM reads that and attempts to install "colors" because it's listed as a depende
 
 ## Making Assertions
 
+Let's move away from the incredible world of NPM for a moment and focus our attention back on testing. How would we test if one thing equals another?
 
+```
+console.log(1 === 1);
+```
+
+That's a start, but actually there is a `console` method called `assert` that will raise errors when statements aren't true.
+
+
+```
+console.assert(1 === 1)
+
+console.assert(1 === 2)
+```
+
+Raising errors is useful because it allows people designing testing software to exit a procedure if it fails part of a test, so that they can continue testing other things.
+
+
+However, what happens when we want to assert the equality between objects or arrays?
+
+```
+console.assert([1,2] === [1,2]);
+// errors out
+console.assert({name: "foo"} === {name: "foo"});
+// errors out
+```
+
+We need some simple set of methods for testing objects. Luckily node has this package built into it, [ASSERTION TESTING](http://nodejs.org/api/assert.html), as well as other [things](http://nodejs.org/api/).
+
+```
+var assert = require("assert");
+assert.equal(1, 1);
+assert.equal(1, 2);
+```
+
+You can use `assert.deepEqual` to test the equality of things based on their similarity rather than their references.
+
+```
+assert.deepEqual([1,2,3], [1,2,3]);
+assert.deepEqual([1,2,3], [1,2,4]);
+```
 ## Installing Mocha
 
 [http://mochajs.org/](http://mochajs.org/)
 
+Unfortunately, using just assertions isn't a very organized way of testing and describing behavior. To deal with this we are going to use a set of tools that  help us organize our assertions and print better errors when they fail.
+
+
 
 ```
-$ npm install -g mocha
-
+npm install -g mocha
+mkdir test
+subl test/test.js
 ```
+
+
+From here we will break down the example on Mocha's homepage.
+
+
