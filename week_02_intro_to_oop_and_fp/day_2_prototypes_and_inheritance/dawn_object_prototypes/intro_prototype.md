@@ -157,17 +157,17 @@ A setter method changes one or more properties associated with an object.
 
 
   // A setter for the firstName
-  Person.prototype.getFirstName = function (newFirst) {
+  Person.prototype.setFirstName = function (newFirst) {
     this.firstName = newFirst;
   };
 
   // A setter for the lastName
-  Person.prototype.getLastName = function (newLast) {
+  Person.prototype.changeLastName = function (newLast) {
     this.lastName = newLast;
   };
 
   // A setter for the fullName
-  Person.prototype.fullName = function (newFirst, newLast) {
+  Person.prototype.changeFullName = function (newFirst, newLast) {
     this.firstName = newFirst;
     this.lastName = newLast;
   };
