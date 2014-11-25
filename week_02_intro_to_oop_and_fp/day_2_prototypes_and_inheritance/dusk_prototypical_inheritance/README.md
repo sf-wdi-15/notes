@@ -6,6 +6,7 @@
 | Apply constructors and prototypes together to implement inheritance between objects in Javascript |
 | To examine lookup in the prototype chain and articulate certain advantages via diagrams |
 
+![Darth Prototype](https://38.media.tumblr.com/tumblr_m1wwr3Bvyj1qgbp1jo1_500.gif)
 ## Related Topics
 
 * Prototypal Inheritance
