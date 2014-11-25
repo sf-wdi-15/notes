@@ -83,3 +83,13 @@ You might be hating the how unintuitive using `assert` feels. Luckily, their are
 
 [chai](http://chaijs.com/)
 
+Here we see that Chai comes in three different flavors:
+
+* should
+* expect
+* assert
+
+The cool thing is that `assert` looks like what we've already been using, but our focus if going to be on using the `expect` library. This is because using `mocha` with `chai`'s expectations is going to look a lot like `Rspec` when we get to ruby.
+
+
+
