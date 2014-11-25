@@ -91,5 +91,11 @@ Here we see that Chai comes in three different flavors:
 
 The cool thing is that `assert` looks like what we've already been using, but our focus if going to be on using the `expect` library. This is because using `mocha` with `chai`'s expectations is going to look a lot like `Rspec` when we get to ruby.
 
+To get `chai` installed we are going to run
 
+```
+$ npm install --save-dev chai
+```
+
+This saves it to our devDependencies list which isn't required to actually run or project. For documentation on how to write assertions with chai read the following, [chai api](http://chaijs.com/api/bdd/).
 
