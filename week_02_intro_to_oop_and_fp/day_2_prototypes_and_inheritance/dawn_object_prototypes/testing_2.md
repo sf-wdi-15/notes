@@ -81,3 +81,5 @@ describe('Array', function(){
 You might be hating the how unintuitive using `assert` feels. Luckily, their are more intuitive libraries that stress readability that do what `assert` does.
 
 
+[chai](http://chaijs.com/)
+
