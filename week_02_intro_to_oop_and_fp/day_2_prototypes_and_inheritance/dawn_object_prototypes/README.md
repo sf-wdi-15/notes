@@ -1,115 +1,185 @@
 #Javascript Constructors
+
 > By the end of this lecture, students will understand constructors in a javascript. A way of create objects that share the same methods and attributes
 
 ##Constructors
+
 There is a lot of different ways to create objects. 
 
 **Object Literal Notation**
 
 ```
-var anil = {}
-var anil = new Object()
-
-anil.firstName = "anil"
-anil.lastName = "bridgpal"
-anil.role = "instructor"
-
+var person = {};
 ```
-
-Object Literal notation, is uses `var` and `:`
 
 **Constructor Notation**
 
-We can use a constructor function to create multiple objects that share the same properties.
+```
+var person = new Object();
+```
+
+We can actually use constructors for creating `Array`'s also
 
 ```
-require('locus')
-var Person = function(firstName, lastName) {
-  this.firstName = firstName;
-  this.lastName = lastName;
+// Array is the constructor
+var myArr = new Array();
+
+// The above is equivalent 
+//  to using an array literal
+var myArr = [];
+```
+
+### Creating Custom Objects
+
+In trying to model the world around us it becomes useful to create functions that generate objects for us quickly. In general a **constructor creates new objects using some given properties.**
+
+```
+function Person (first, last) {
+  // create new object
+  var newPerson = {};
+
+  // set firstName and lastName
+  newPerson.firstName = first;
+  newPerson.lastName = last;
+
+  // return newPerson
+  return newPerson;
+}
+```
+
+Note: A constructor has a few key differences.
+
+* It uses **function declaration**
+* It uses **captialized CamelCase**.
+
+  ```
+  function SomeConstructor () {}
+  ```
+
+We can use our constructor to quickly create new people.
+
+```
+var jane = Person("Taylor", "Swift");
+var john = Person("John", "Doe");
+```
+
+
+
+### Exercise
+
+1.) Let's create a constructor for a `Pet` that has both a `name` and `age`.
+
+
+The above kind of constructor should seem repetitive. This is because we have to always write something like the following:
+
+```
+function Person (first, last) {
+  // create new object
+  var newPerson = {};
+
+  // some code
+
+  // return newPerson
+  return newPerson;
+}
+```
+
+Luckily, there is a nice keyword called `new` that will both create a new object and makes it accessible as `this`. Thus 
+
+```
+function Person (first, last) {
+  // create new object
+  var newPerson = {};
+
+  // set firstName and lastName
+  newPerson.firstName = first;
+  newPerson.lastName = last;
+
+  // return newPerson
+  return newPerson;
+}
+```
+
+becomes just
+
+```
+function Person (first, last) {
+
+  // set firstName and lastName
+  this.firstName = first;
+  this.lastName = last;
+
+  return this;
+}
+```
+
+and we can create a new `Person` by saying the following:
+
+```
+var jane = new Person("Taylor", "Swift");
+var john = new Person("John", "Doe");
+```
+
+Actually, the `new` keyword does one more cool thing. It returns `this` implicitly, so we don't have to say return. Now we can just write
+
+
+```
+function Person (first, last) {
+  // set firstName and lastName
+  this.firstName = first;
+  this.lastName = last;
+}
+```
+
+**That's clean code!**
+
+
+### Exercise 
+
+* Rewrite our `Pet` example assuming the `new` keyword will be used with our constructor.
+* Write a constructor for a `SuperHero` that takes a `name` and an `alterEgo`.
+
+
+
+### Adding Methods
+
+If we use the constructor pattern we can add methods to our newly created object and not just properties. 
+
+```
+function Person (first, last) {
+  this.firstName = first;
+  this.lastName = last;
   this.fullName = function () {
-    return ("Hello" + firstName + lastName)
-  }
+    return this.lastName + ", " this.firstName;
+  };
 }
 
-var anil = new Person("anil", "bridgpal");
+var tSwift = new Person("Taylor", "Swift");
 
-console.log(anil.firstName);
-console.log(anil.fullName());
-eval(locus);
+console.log(tSwift.firstName);
+console.log(tSwift.fullName());
 ```
 
-Using the `new` keyword, Javascript does a few thing.
- * Creates a new object
- * Sets the `constructor` property to the object Person
- You can use x.constructor to get a direct reference to the object, but it's an anonymous function so there's no way of getting its name.
+### Need To Know Trivia
 
+The `new` keyword does the following
+
+  * Creates a `new` object
+  * Implicitly returns the the `new` object
+  * Sets the `constructor` property to the object Person
 
 
 ##Pitfalls
+
 When using the constructor
 
 Don't try to call a constructor without the `new` keyword.
 
-Person("delmer")
-
-`firstName` now exists
-
-====
-`return` statements in a constructor does not do anything
-
-
-## A Prototype In JS
-
-In javascript we don't have classes. We have prototypes
-
-  function Person(name){
-    this.name = name
-  }
-  
-  Person.prototype.greet = function(){
-    return "Hello, my name is " + this.name;
-  };
-
-* Why do we use the prototype?
-* What is a `hasOwnProperty`?
-* What is a `prototypeProperty`?
-* How do we create a new `Person`?
-
-
-### Static Methods and Attributes
-
-Here is a static attribute
-
 ```
-  function Person(name){
-    this.name = name
-    Person.all.push(name);
-  }
-
-  Person.all = [];
-
-  Person.prototype.greet = function(){
-    return "Hello, my name is " + this.name;
-  };
-
+Bad --> Person("Taylor", "Swift");
+Good --> new Person("Taylor", "Swift");
 ```
 
-Here is a static method
 
-```
-  function Person(name){
-    this.name = name
-    Person.all.push(name);
-  }
 
-  Person.all = [];
-  Person.count = function(){
-    return Person.all.length;
-  };
-  
-  Person.prototype.greet = function(){
-    return "Hello, my name is " + this.name;
-  };
 
-```
