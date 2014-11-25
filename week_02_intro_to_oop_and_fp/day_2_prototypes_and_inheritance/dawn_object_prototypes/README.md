@@ -1,8 +1,8 @@
-#Javascript Constructors
+# Javascript Constructors
 
 > By the end of this lecture, students will understand constructors in a javascript. A way of create objects that share the same methods and attributes
 
-##Constructors
+## Constructors
 
 There is a lot of different ways to create objects. 
 
@@ -180,6 +180,43 @@ Bad --> Person("Taylor", "Swift");
 Good --> new Person("Taylor", "Swift");
 ```
 
+### Static Methods and Properties
+
+It turns out that functions are just objects as well. **Everything in Javascript is an OBJECT!!! MADNESS**
+
+![unlearning](http://www.quickmeme.com/img/07/0744051b8a554e4e3a5b2fe34857e62ee879e7143632b33b80a4cb2e1e128cac.jpg)
+
+```
+function Person (first, last) {
+  this.firstName = first;
+  this.lastName = last;
+  this.fullName = function () {
+    return this.lastName + ", " this.firstName;
+  };
+}
+
+Person.inspiringMessage = "Use the force!!";
+console.log(Perosn.inspiringMessage);
+// logs "Use the force!!"
+```
+
+When we set properties or methods on a constructor they are called **Static Properties** or **Static Methods**. Let's see a static property that keeps track of people being created.
 
 
+```
+function Person (first, last) {
+  this.firstName = first;
+  this.lastName = last;
+  this.fullName = function () {
+    return this.lastName + ", " this.firstName;
+  };
 
+  Person.all.push(this);
+}
+
+Person.all = [];
+
+var tSwift = new Person("Taylor", "Swift");
+console.log(Person.all);
+// logs an array with tSwift inside.
+```

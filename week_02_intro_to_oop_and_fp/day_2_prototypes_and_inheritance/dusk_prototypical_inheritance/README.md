@@ -24,10 +24,7 @@
 
 ## Classical Inheritance
 
-
-
-
-### A Prototype In JS
+### A Prototype In JS Review
 
 In javascript we don't have classes. We have prototypes
 
@@ -45,25 +42,9 @@ In javascript we don't have classes. We have prototypes
 * How do we create a new `Person`?
 
 
-### Static Methods and Attributes
+### Static Method/Property Review
 
-Here is a static attribute
-
-```
-	function Person(name){
-		this.name = name
-		Person.all.push(name);
-	}
-
-	Person.all = [];
-
-	Person.prototype.greet = function(){
-		return "Hello, my name is " + this.name;
-	};
-
-```
-
-Here is a static method
+Here is a static method and property
 
 ```
 	function Person(name){
@@ -86,6 +67,7 @@ Here is a static method
 
 Given the following prototype let's create a student.
 
+```
 	function Person(name){
 		this.name = name
 	}
@@ -99,31 +81,26 @@ Given the following prototype let's create a student.
 		this.course = course;
 	};
 
-	Student.prototype = new Person
+	Student.prototype = new Person();
 	Student.prototype.constructor = Student;
+```
+
+Play with the above example. Create a new `Student`.
 
 * What's inherited?
-* Why set the constructor?
+	* the `greet` method
+* Why set the `Student.prototype.constructor`?
+	* when we say `Student.prototype = new Person();` it breaks the constructor property.
 
 
-### Shape Exercises:
+### Exercises:
 
-* Create a method called `inherit` that takes two constructors and achieves the above inheritance.
-
-* Try implementing the following:
-
-   | Quadrilateral |
-   | :---- |
-   | perimeter |
-   | Sides: 4 |
-      	   	   
-  Note: the `Quadrilateral` constructor should take four side lengths.
-
-*  Use your `inherit` function to have `Rectangle` inherit from `Quadrilateral`. 
-* The following should inherit from `Rectangle`, `square`.
-
-* Update the `prototypes` of `Rectangle` and `Square` above so they have more specific methods. `Rectangle` needs an `Area` method and a better `Perimeter` method. `Square` also needs a better `Area` method and  a better `Perimeter` method.
-
+* Try adding study method on the `Student` prototype that returns "Maybe later".
+* Try creating a `Table` constructor that takes `numberOfLegs` and `shape`.
+	* Add a `putOn` method that takes a string and pushes it into an array of `items`. For example I could say `table.putOn("plates")` for a new table, and the `table.items` would be `["plates"]`.
+* Try creating a `LawnTable` also takes `numberOfLegs` and `shap`, and inherits from `Table`.
+	* Add a `unfold` method to the `LawnTable` prototype that sets a property `ready` to `true`.
+	* Add a `foldup` method to the `LawnTable` prototype that sets a property `ready` to be `false`.
  
 
 
@@ -131,7 +108,7 @@ Given the following prototype let's create a student.
 
 When we inherit in JS we have to watch out for in the wild.
 
-	
+```	
 	function Person(name){
 		this.name = name;
 		this.friends = [];
@@ -148,8 +125,35 @@ When we inherit in JS we have to watch out for in the wild.
 	Student.prototype = new Person()
 	Student.prototype.constructor = Student;
 
+```
 * Create two students and add different  friends to each. What 
 	* What happens after adding a friend?
+
+
+
+One quick solution or best practice to avoid problems like these is to always avoid initializing properties with array and object values in the constructor if possible. The alternative is to just add check to each method to check if the value is defined.
+
+The above example might become:
+
+```	
+	function Person (name) {
+		this.name = name;
+	}
+	
+	Person.prototype.addFriend = function (name) {
+		this.friends = this.friends || [];
+		this.friends.push(new Person(name));
+	};
+	
+	function Student(name){
+		this.name = name;
+	};
+	
+	Student.prototype = new Person()
+	Student.prototype.constructor = Student;
+
+```
+
 
 
 ### `call` and `apply`
@@ -227,49 +231,8 @@ Let's talk about using `call` or `apply` to set the `this` context for a functio
 	Student.prototype.constructor = Student;
 
 
-* Do we really want hasOwnProperties?
 
-
-### Copying the Prototype
-
-	function Person(name){
-		this.name = name;
-	}
-	
-	Person.prototype.greet = function(){	
-		return "Hello! My name is " + this.name;
-	}
-	
-	function Student(name){
-		// masks all the constructor properties
-		Person.call(this);
-		this.name = name;
-	};
-	
-	var Intermediary = function(){};
-	// Copy just the prototype
-	Intermediary.prototype = Person.prototype;
-	Student.prototype = new Intermediary;
-
-* Turn this inheritance process into a function called `inherits`.
-* Create a new `Student`. What's the constructor name of the new student?
-
-This is an interesting idea of copying one objects prototype and returning an instance of a copy. 
-
-* How could we in general take an object and do this process with it?
-
-		function createObject(protoObj){
-			function Intermediary(){}
-			Intermediary.prototype = obj;
-			return new Intermediary();
-		}
-
-
-* Let's use this createObject.
-* What would we have to change with `createObject` to have it properly update the constructor property.
-
-
-
+Unfortunately, this breaks the **Law of Demeter** or **Priniciple of Least Knowledge**, which is that modular units should have a very limited knowledge of the other units they are tied to.
 
 
 

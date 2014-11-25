@@ -189,7 +189,7 @@ friend.name = "josh";
 
 That's kinda cool, so we won't typically have to worry too much about getters and setters.
 
-## Exercises/Homework
+## Exercises/More Homework
 
 * Make a `Starship` constructor that takes a `model` and `ownerName`. 
   * Give your a `setTopSpeed` method and a `getTopSpeedMethod` that let you change and read the `topSpeed`. *Assume `topSpeed` is just a number.*
