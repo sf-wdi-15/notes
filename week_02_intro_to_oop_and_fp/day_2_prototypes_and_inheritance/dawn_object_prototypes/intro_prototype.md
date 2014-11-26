@@ -192,7 +192,7 @@ That's kinda cool, so we won't typically have to worry too much about getters an
 ## Exercises/More Homework
 
 * Make a `Starship` constructor that takes a `model` and `ownerName`. 
-  * Give your a `setTopSpeed` method and a `getTopSpeedMethod` that let you change and read the `topSpeed`. *Assume `topSpeed` is just a number.*
+  * Give your `StarShip` a `setTopSpeed` method and a `getTopSpeedMethod` that let you change and read the `topSpeed`. *Assume `topSpeed` is just a number.*
   * Give your `Starship` an `accelerateTo` method that sets `currentSpeed` to some number, unless that number is greater than its `topSpeed`.
 * Make a `Dice` constructor that takes a `numberOfSides`. Add a method called `getSide` or `roll` that randomly returns a number from `1` up to the `numberOfSides`.
   * Modify your `getSide` method to record the returned side in a `lastRoll` property.
