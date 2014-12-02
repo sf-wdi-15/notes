@@ -13,39 +13,27 @@ Introduction To Databasess
 * Begin learning about joins and more advanced queries.
 
 ## BEFORE YOU DO ANYTHING - Install Postgres.app
-### Mac OSX - Install Postgres.app 
+### Mac OSX - Install Postgres.app
 For the lesson we will be using Postgres as our database to demonstrate and practice what we are learning.  Postgres can be installed many ways, but for our purposes, Postgres.app will be the best option.  Please follow the instructions below if you have not done so already.
 
 * Go to [http://postgresapp.com/](http://postgresapp.com/)
 * Download and install
 * Follow the __Command-Line Tools__ here: [http://postgresapp.com/documentation/cli-tools.html](http://postgresapp.com/documentation/cli-tools.html)
 
-### Ubuntu - Install Postgres.app
-
-  
-```
-  https://help.ubuntu.com/community/PostgreSQL
-```
-
-
 ### Both Ubuntu and MAC OSX
 
 * Verify the install was successful by typing ```psql``` in your terminal.  ```\q``` to quit.
 
-
-
 __IF THIS DOES NOT WORK, STOP IMMEDIATELY AND GET HELP FROM AN INSTRUCTOR__
 
-
 ##Install Client Gem
-  
+
 * Next install the pg gem if you have not done so already (you can see this by typing in gem list in terminal)
 
 ```
 gem install pg
 ```
 * If you get an error when installing try running using sudo with:
-
 
 ```
 sudo gem install pg
@@ -55,10 +43,12 @@ sudo gem install pg
 
 - Sometimes called a DBMS (Database Management System)
 - It is a program that enforces structure on your data and allows a computer to quickly retreive data.
-- A database should support CRUD operations.  
+- A database should support CRUD operations.
   - CRUD => Create, Read, Update, Delete
-  
+
 ## Why Use a Database?
+
+How else could we manage large amounts of data?
 
 Why is it better than just writing to files?
 
@@ -80,8 +70,9 @@ __RDBMS (Relational Database Management System)__ The most common type of databa
 * Microsoft SQL Server
 * SQLite (Good for mobile development/Small applications)
 
-__NoSQL__ There is also a school of thought called NoSql.  It is often a Key Value storage system and is not relational.  This is typically used in applications where a database does not scale well.  Example technologies include __MongoDB__, __Apache Couch__, __SimpleDB__.
+__NoSQL__ There is also a school of thought called NoSql.  It is often a Key Value storage system and is not relational.  This is typically used in applications where a database does not scale well.  Example technologies include __MongoDB__, __Apache Couch__, __SimpleDB__, __Redis__, etc.
 
+[Comparison of NoSQL databases.](http://kkovacs.eu/cassandra-vs-mongodb-vs-couchdb-vs-redis)
 
 ## Getting started with psql
 
