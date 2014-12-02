@@ -9,6 +9,8 @@ More controller functionality using a faux DB for CRUD
   * Review
     * INDEX
     * Create
+  * More about Package.json 
+  	* app.js
   * Using route params
   	* `show`ing a particular book
   * Using Static Assets
