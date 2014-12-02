@@ -39,7 +39,13 @@ gem install pg
 sudo gem install pg
 ```
 
-# What is a database?
+#Think-Pair-Share
+-How did we store data that our app used before? Think about that books array or articles array from our express examples.
+-What are the pros and cons of storing data that way?
+-What are some alternative ways we could have stored the data?
+-What sort of problems might come up as we try to scale this app?
+
+#What is a database?
 
 - Sometimes called a DBMS (Database Management System)
 - It is a program that enforces structure on your data and allows a computer to quickly retreive data.
