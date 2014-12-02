@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link href="stylesheets/main.css" rel="stylesheet">
+</head>
+<body>
+  Books Index:
+  <% bookList.forEach(function (book, index) { %>
+    <div>
+      <a href="books/<%= index %>"><%= book.title %></a>
+      <form action="books/<%= index %>?_method=DELETE" method="post">
+        <button> Delete </button>
+      </form>
+    </div>
+  <% }) %>
+</body>
+</html>
