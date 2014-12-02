@@ -9,6 +9,10 @@ More controller functionality using a faux DB for CRUD
   * Review
     * INDEX
     * Create
+  * Using route params
+  	* `show`ing a particular book
+  * Using Static Assets
+  	* public file
   * Setup Faux DB using Array
     * Books
   * Using `method-overide`
