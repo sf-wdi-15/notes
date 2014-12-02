@@ -88,13 +88,11 @@ If you installed Postgress.app you have access to psql from the elephant icon at
 
 If you are using the command line:
 
-* In your terminal, type ```psql```.  
+* In your terminal, type ```psql```.
 
 __psql__ is the (a) command line tool to interact with postgres databases, by default it connects to the localhost database with the name of the current user
 
-
 psql has some of it's own command which begin with `\`
-
 
 List all of the available databases:
 
@@ -117,7 +115,6 @@ Use `q` to exit the help screen
 
 __ALL PSQL COMMANDS START WITH `\` __
 
-
 At this point we should have a database with no tables in it.  So now we need to create tables - using SQL __(NOT to be confused with the psql app itself)__
 
 # SQL: Structured Query Language
@@ -130,9 +127,7 @@ __CRUD__
 
 Stands for Create, Read, Update and Destroy.  This is the lifecycle of data in an applicatoin.  In SQL, CRUD can be mapped to the following __INSERT, SELECT, UPDATE, DELETE__.  We will walk through examples of in this section.
 
-
 __ALL SQL COMMANDS MUST BE ENDED WITH A SEMICOLON IN THE PSQL SHELL__
-
 
 ## Creating a Database
 
@@ -184,7 +179,7 @@ Similar to how Ruby has types of data, SQL defines types that can be stored in t
 
 Normalization is a more advanced database design topic.  The idea behind normalization is that the data in your table should not be repeated.  The introduction of the [wikipedia article on normalization](http://en.wikipedia.org/wiki/Database_normalization) gives a good summary.
 
-##psql and SQL 
+##psql and SQL
 
 * CREATE a Database:
 
@@ -198,7 +193,7 @@ Normalization is a more advanced database design topic.  The idea behind normali
   \connect testdb
 
  ->You are now connected to database "testdb" as user "stuart".
-  
+
 ```
 
 * CREATE a TABLE
@@ -215,8 +210,8 @@ CREATE TABLE students (
 * INSERT (remember single quotes for text)
 
 ```
-INSERT INTO students 
-(name, phone, email) 
+INSERT INTO students
+(name, phone, email)
 VALUES 
 ('Mary Wilson', '(510)-555-5555', 'bob@example.com');
 
@@ -248,7 +243,4 @@ DELETE from students WHERE name = 'Mary';
 ADD A FOREIGN KEY
 
 ``` ALTER TABLE _____ ADD CONSTRAINT something_fk FOREIGN KEY (____) REFERENCES _____ (_____) ON DELETE NO ACTION; ```
-
-
-
 
