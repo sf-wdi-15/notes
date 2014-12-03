@@ -112,6 +112,8 @@ Before the notion of an RDBMS and a standard language for querying that data was
 
 __CRUD__
 
+Don't we know CRUD from before?
+
 Stands for Create, Read, Update and Destroy.  This is the lifecycle of data in an applicatoin.  In SQL, CRUD can be mapped to the following __INSERT, SELECT, UPDATE, DELETE__.  We will walk through examples of in this section.
 
 __ALL SQL COMMANDS MUST BE ENDED WITH A SEMICOLON IN THE PSQL SHELL__
