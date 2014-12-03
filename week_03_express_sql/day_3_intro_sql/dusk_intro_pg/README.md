@@ -26,19 +26,6 @@ For the lesson we will be using Postgres as our database to demonstrate and prac
 
 __IF THIS DOES NOT WORK, STOP IMMEDIATELY AND GET HELP FROM AN INSTRUCTOR__
 
-##Install Client Gem
-
-* Next install the pg gem if you have not done so already (you can see this by typing in gem list in terminal)
-
-```
-gem install pg
-```
-* If you get an error when installing try running using sudo with:
-
-```
-sudo gem install pg
-```
-
 #Think-Pair-Share
 - How did we store data that our app used before? Think about that books array or articles array from our express examples.
 - What are the pros and cons of storing data that way?
@@ -213,7 +200,15 @@ CREATE TABLE students (
 INSERT INTO students
 (name, phone, email)
 VALUES 
-('Mary Wilson', '(510)-555-5555', 'bob@example.com');
+('Mary Wilson', '(510)-555-5555', 'mary@example.com');
+
+```
+
+```
+INSERT INTO students
+(name, phone, email)
+VALUES 
+('Bob Jones', '(510)-555-5555', 'bob@example.com');
 
 ```
 
@@ -221,6 +216,14 @@ VALUES
 
 ```
 SELECT id, email FROM students WHERE name = 'Bob Jones';
+```
+
+```
+SELECT id, email FROM students WHERE name = 'Mary Wilson';
+```
+
+```
+SELECT id, name FROM students WHERE phone = '(510)-555-5555';
 ```
 
 * UPDATE
@@ -232,7 +235,7 @@ UPDATE students SET email='bobby@example.com' WHERE name = 'Bob Jones';
 * DELETE
 
 ```
-DELETE from students WHERE name = 'Mary';
+DELETE from students WHERE name = 'Mary Wilson';
 ```
 
 * QUIT psql 
