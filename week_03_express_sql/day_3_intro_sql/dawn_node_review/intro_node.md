@@ -229,7 +229,7 @@ Let's modify our `hello_world.js` to demonstrate this.
 
 `sub_folder/hello_world.js`
 
-```
+```js
 console.log("hello world!");
 
 // now we only expose a string "foobar"
@@ -239,7 +239,7 @@ module.exports = "foobar";
 
 and we should probably modify our `app.js` to not try to use our now non-existent `sayHello` method.
 
-`another_folder/app.js`
+`app.js`
 
 ```
 var greeter = require("../sub_folder/app.js");
