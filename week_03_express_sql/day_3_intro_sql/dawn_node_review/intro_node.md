@@ -2,6 +2,13 @@ intro_node.js
 # Intro Node 
 ## File Separation 
 
+### Getting started
+
+What's the first thing we always do in a new project folder?
+
+```
+$ npm init
+```
 
 ### Running A `.js` File With Node
 
