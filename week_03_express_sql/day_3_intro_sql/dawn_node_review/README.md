@@ -3,7 +3,7 @@
 ## A few basic questions
 1. What does REPL stand for?
   * What is the REPL?
-2. How do you run javascript programs using using node?
+2. Running javascript applications or scripts using node
 
 ## File separation in node
 
@@ -15,7 +15,7 @@ Suppose we want to create a simple script that prints "Hello world!" to the cons
 What if after printing "Hello world!" we wanted our script to compute the result of `factorial(5)`?
 * How might we go about adding this functionality to our script?
 
-In terms of "concerns", would you say printing, and the calculation of factorials are similar, or different?
+In terms of "concerns", would you say printing "Hello world" is similar to calculating factorials?
 
 ### Using require for file separation
 1. What does `require` do?
@@ -23,5 +23,12 @@ In terms of "concerns", would you say printing, and the calculation of factorial
   * And discuss how `require()` can help us separate our code into separate files
 
 2. But if we just use `require` to include our normal scripts, we're basically just stapling bits of code together
-  * In the statement `var greeter = require("hello_world.js")` what is the value of `greeter`?
+  * In our original scripts, when we write the statement `var greeter = require("hello_world.js")` into `app.js` what is the value of `greeter`?
+  * How about after we expose some functionality or values?
+
+3. What if we want to "expose" functionality when we use the `require`?
+  * What are the benefits of using `module.exports`?
+    - Namespacing
+    - Creating an "API" or "module" of your own
+
 
