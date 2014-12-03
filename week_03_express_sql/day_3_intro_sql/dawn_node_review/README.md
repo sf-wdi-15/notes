@@ -18,7 +18,7 @@ What if after printing "Hello world!" we wanted our script to compute the result
 In terms of "concerns", would you say printing "Hello world" is similar to calculating factorials?
 
 ### Using require for file separation
-1. What does `require` do?
+1. At a basic level, what does `require` do?
   * Let's review how to use `require()`
   * And discuss how `require()` can help us separate our code into separate files
 
