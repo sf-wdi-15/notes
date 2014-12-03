@@ -242,7 +242,7 @@ DELETE from students WHERE name = 'Mary Wilson';
 
 * QUIT psql 
 ```
-/q
+\q
 ```
 
 ADD A FOREIGN KEY
