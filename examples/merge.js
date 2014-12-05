@@ -27,4 +27,14 @@ var merge = function(xs,ys) {
 };
 
 
-console.log(merge([3,4,7],[1,2,6]));
+var mSort = function(arr) {
+  if (arr.length === 1) {
+    return arr;
+  } else {
+    var left = arr.slice(0, (arr.length)/2);
+    var right = arr.slice((arr.length)/2, arr.length);
+    return merge(mSort(left), mSort(right));
+  }
+};
+
+console.log(mSort([3,4,7,1,2,6]));
