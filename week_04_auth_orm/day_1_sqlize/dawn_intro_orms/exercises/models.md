@@ -31,6 +31,7 @@ createdb example_dev
 
 Edit your `config.json` to use the db you created above.
 
+```
 {
   "development": {
     "database": "example_dev",
@@ -40,6 +41,7 @@ Edit your `config.json` to use the db you created above.
   ...
 
 }
+```
 
 
 ### Model Creation
