@@ -17,7 +17,7 @@ npm init
 and only install sequelize
 
 ```
-npm install --save sequelize pg
+npm install --save  pg sequelize
 ```
 
 
