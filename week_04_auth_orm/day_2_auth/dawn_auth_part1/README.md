@@ -296,9 +296,9 @@ module.exports = function (sequelize, DataTypes){
         var hash = bcrypt.hashSync(password, salt);
         return hash;
       },
-      comparePass: function(email, dbpass) {
+      comparePass: function(pass, dbpass) {
         // don't salt twice when you compare....watch out for this
-        return bcrypt.compareSync(email, dbpass);
+        return bcrypt.compareSync(pass, dbpass);
       },
       createNewUser:function(email, password, err, success ) {
         if(password.length < 6) {
@@ -353,3 +353,10 @@ module.exports = function (sequelize, DataTypes){
                              return User;
 }; // close User function
 ```
+Now play around with this stuff in command line
+
+```bash
+$ node
+> var db = require('./models/index');
+> db.user.createNewUser('example@example.com', 'password', function(msg) { console.log(msg); }, function(msg) { console.log('Success', msg); });
+>
