@@ -255,9 +255,7 @@ Update models/user to look like this
 var bcrypt = require("bcrypt");
 var salt = bcrypt.genSaltSync(10);
 
-// This is the old code that should be there
-//
-// module.exports = function(sequelize, DataTypes) {
+////module.exports = function(sequelize, DataTypes) {
 //  var user = sequelize.define("user", {
 //    email: DataTypes.STRING,
 //    password_digest: DataTypes.STRING
@@ -275,9 +273,9 @@ var salt = bcrypt.genSaltSync(10);
 
 module.exports = function (sequelize, DataTypes){
   var User = sequelize.define('user', {
-    email: {
-      type: DataTypes.STRING,
-      unique: true,
+    email: { 
+      type: DataTypes.STRING, 
+      unique: true, 
       validate: {
         len: [6, 30],
       }
@@ -291,23 +289,24 @@ module.exports = function (sequelize, DataTypes){
   },
 
   {
+    instanceMethods: {
+      checkPassword: function(password) {
+        return bcrypt.compareSync(password, this.password_digest);
+      }
+    },
     classMethods: {
-      encryptPass: function(password) {
+      encryptPassword: function(password) {
         var hash = bcrypt.hashSync(password, salt);
         return hash;
       },
-      comparePass: function(pass, dbpass) {
-        // don't salt twice when you compare....watch out for this
-        return bcrypt.compareSync(pass, dbpass);
-      },
-      createNewUser:function(email, password, err, success ) {
+      createSecure: function(email, password, err, success ) {
         if(password.length < 6) {
           err({message: "Password should be more than six characters"});
         }
         else{
-          User.create({
+          this.create({
             email: email,
-            password_digest: User.encryptPass(password)
+            password_digest: this.encryptPassword(password)
           }).error(function(error) {
             console.log(error);
             if(error.email){
@@ -321,14 +320,14 @@ module.exports = function (sequelize, DataTypes){
           });
         }
       },
-      authorize: function(email, password, err, success) {
+      authenticate: function(email, password, err, success) {
         // find a user in the DB
-        User.find({
+        this.find({
           where: {
             email: email
           }
         })
-        // when that's done,
+        // when that's done, 
         .done(function(error,user){
           if(error){
             console.log(error);
@@ -347,10 +346,8 @@ module.exports = function (sequelize, DataTypes){
       }
 
     } // close classMethods
-  } //close classMethods outer
-
-                             ); // close define user
-                             return User;
+  }); // close define user
+  return User;
 }; // close User function
 ```
 Now play around with this stuff in command line
@@ -358,4 +355,4 @@ Now play around with this stuff in command line
 ```bash
 $ node
 > var db = require('./models/index');
-> db.user.createNewUser('example@example.com', 'password', function(msg) { console.log(msg); }, function(msg) { console.log('Success', msg); });
+> db.user.createSecure('example@example.com', 'password', function(msg) { console.log(msg); }, function(msg) { console.log('Success', msg); });

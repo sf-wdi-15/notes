@@ -37,23 +37,24 @@ module.exports = function (sequelize, DataTypes){
   },
 
   {
+    instanceMethods: {
+      checkPassword: function(password) {
+        return bcrypt.compareSync(password, this.password_digest);
+      }
+    },
     classMethods: {
-      encryptPass: function(password) {
+      encryptPassword: function(password) {
         var hash = bcrypt.hashSync(password, salt);
         return hash;
-      }, 
-      comparePass: function(email, dbpass) {
-        // don't salt twice when you compare....watch out for this
-        return bcrypt.compareSync(email, dbpass);  
       },
-      createNewUser:function(email, password, err, success ) {
+      createSecure: function(email, password, err, success ) {
         if(password.length < 6) {
           err({message: "Password should be more than six characters"});
         }
         else{
-          User.create({
+          this.create({
             email: email,
-            password_digest: User.encryptPass(password)
+            password_digest: this.encryptPassword(password)
           }).error(function(error) {
             console.log(error);
             if(error.email){
@@ -67,11 +68,11 @@ module.exports = function (sequelize, DataTypes){
           });
         }
       },
-      authorize: function(email, password, err, success) {
+      authenticate: function(email, password, err, success) {
         // find a user in the DB
-        User.find({
+        this.find({
           where: {
-            username: username
+            email: email
           }
         })
         // when that's done, 
@@ -90,12 +91,10 @@ module.exports = function (sequelize, DataTypes){
             err({message: "Invalid password"});
           }
         });
-      }  
+      }
 
     } // close classMethods
-  } //close classMethods outer 
-
-                             ); // close define user
-                             return User;
+  }); // close define user
+  return User;
 }; // close User function
 
