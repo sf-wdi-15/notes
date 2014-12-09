@@ -1,15 +1,3 @@
-```
-createdb auth_example
-
-sequelize init
-
-sequelize model:create --name user --attributes "email:STRING, password_digest:STRING"
-
-```
-
-update config by removing 
-
-
 #Authentication & Authorization Part I
 
 ##Think-Pair-Share (15-20 min)
@@ -62,25 +50,22 @@ Now lets play in terminal a little bit.
 
 First let's make a new directory and change into it.
 
-bash
-```
+```bash
 $ mkdir authEx
 ```
 
-bash
-```
+```bash
 $ cd authEx
 ```
 
 Next lets install bcrypt and open up a node REPL.
 
-bash
-```
+```bash
 $ npm install --save bcrypt
 ```
 
-bash
-```
+
+```bash
 $ node
 ```
 
@@ -98,9 +83,7 @@ And now the fun begins!
 
 Let's start with a basic User with an in an email and a hashed password.
 
-js
-
-```
+```js
 var bcrypt = require('bcrypt');
 
 function User(email, password) {
@@ -117,9 +100,7 @@ console.log("Del is", Del);
 
 Now lets add a method to the User's prototype that allows us to check the validity of a password.
 
-js
-
-```
+```js
 var bcrypt = require('bcrypt');
 
 function User(email, password) {
@@ -150,9 +131,7 @@ console.log("Del's password is 'password2':", Del.comparePass('password2'));
 
 A Quick re-factor
 
-js
-
-```
+```js
 var bcrypt = require('bcrypt');
 
 function User(email, password) {
@@ -170,6 +149,8 @@ User.prototype.comparePass = function(pass) {
   return samePass;
 };
 
+...
+
 var Mike = new User('mjdesa@gmail.com', 'password');
 var Del = new User('delmer@ga.co', 'password2');
 
@@ -183,3 +164,25 @@ console.log("Del's password is 'password':", Del.comparePass('password'));
 console.log("Del's password is 'password2':", Del.comparePass('password2'));
 ```
 
+##All this stuff, again, but now with sequelize!
+
+First and foremost, lets make a new directory
+
+```bash
+$ mkdir auth_example
+$ cd auth_example
+```
+Now lets make an example db for our authoration stuff
+
+```bash
+$ createdb auth_example
+```
+Then the usual nonsense for sequelize
+
+**ASK DEL WHAT GOES HERE**
+```bash
+$ sequelize init
+$ sequelize model:create --name user --attributes "email:STRING, password_digest:STRING"
+```
+
+update config by removing 
