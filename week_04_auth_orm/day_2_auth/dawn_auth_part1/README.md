@@ -275,7 +275,7 @@ var salt = bcrypt.genSaltSync(10);
 
 module.exports = function (sequelize, DataTypes){
   var User = sequelize.define('user', {
-    emails: {
+    email: {
       type: DataTypes.STRING,
       unique: true,
       validate: {
@@ -325,7 +325,7 @@ module.exports = function (sequelize, DataTypes){
         // find a user in the DB
         User.find({
           where: {
-            username: username
+            email: email
           }
         })
         // when that's done,
@@ -359,4 +359,3 @@ Now play around with this stuff in command line
 $ node
 > var db = require('./models/index');
 > db.user.createNewUser('example@example.com', 'password', function(msg) { console.log(msg); }, function(msg) { console.log('Success', msg); });
->
