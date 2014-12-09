@@ -179,7 +179,6 @@ $ createdb auth_example
 ```
 Then the usual nonsense for sequelize
 
-**ASK DEL WHAT GOES HERE**
 ```bash
 $ sequelize init
 $ sequelize model:create --name user --attributes "email:STRING, password_digest:STRING"
