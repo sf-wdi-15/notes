@@ -39,19 +39,19 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 
-var bookCount = 2;
-var books = [
-              {
-                id: 1,
-                title: "The Great Gatsby",
-                author: "F.S. Fitzgerald"
-              },
-              {
-                id: 2,
-                title: "The Giver",
-                author: "Lois Lowry"
-              },
-            ];
+// var bookCount = 2;
+// var books = [
+//               {
+//                 id: 1,
+//                 title: "The Great Gatsby",
+//                 author: "F.S. Fitzgerald"
+//               },
+//               {
+//                 id: 2,
+//                 title: "The Giver",
+//                 author: "Lois Lowry"
+//               },
+//             ];
 
 
 
