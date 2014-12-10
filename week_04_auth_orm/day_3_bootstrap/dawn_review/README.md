@@ -58,13 +58,13 @@ So what does it mean to say that two tables are "associated?"
 As we've discussed, databases should follow the same D.R.Y. principles as code. A process we call database normalization allows us to eliminate redundancies, and reduce the chances of our DB containing incomplete, orphaned, or corrupted data.
 
 The process of "normalizing" a database often leads to the creation of associations between database tables. The most common associations are:
-  - One-toOne (1:1): In a "one-to-one" relationship, a child table is associated with **exactly one** parent, and that parent will have zero or one children. A good example would be a social media profile. Each user is entitled to one profile, but you might still separate your user authentication table from that users profile information.
-  - One-to-Many (1:N): In a "one-to-many" relationship between two objects, one object may have many "children", while the children have, at most, one "parent". For example, at many companies, a manager may manage zero or more employees, but each employee will only have 1 manager.
-  - Many-to-Many (N:M): In a many to many relationship between two objects, each object may be associated with 0 or more instances of the other. For example, in a relationship between books and authors, a book may have many authors, and an author may write many books.
+  - One-to-One (Denoted 1:1) — In a *"one-to-one"* relationship, a child table is associated with **exactly one** parent, and that parent will have zero or one children. A good example would be a social media profile. Each user is entitled to one profile, but you might still separate your user authentication table from that users profile information.
+  - One-to-Many (Denoted 1:N) — In a *"one-to-many"* relationship between two objects, one object may have many "children", while the children have, at most, one "parent". For example, at many companies, a manager may manage zero or more employees, but each employee will only have 1 manager.
+  - Many-to-Many (Denoted N:M) — In a *"many to many"* relationship between two objects, each object may be associated with 0 or more instances of the other. For example, in a relationship between books and authors, a book may have many authors, and an author can write many books. 
 
 ### Creating One-To-Many Associations Using Sequelize
 
-We're going to modify our books app to use a One-To-Many association for authors-to-books.
+We're going to modify our books app to use a one-to-many association between authors and books.
 
 What does this relationship signify in this app?
 
@@ -79,11 +79,11 @@ $ sequelize model:create --name book --attributes "title:string, synopsis:text"
 $ sequelize model:create --name author --attributes "firstname:string, lastname:string, age:integer"
 ```
 
-Let's not to update `config/config.json` before moving on.
+Let's not forget to update `config/config.json` before moving on.
 
-Next, we'll modify the `associate` section of our models:
+Next, we'll modify the `associate` key in our models:
 
-We'll change our `book.js` model so that it contains:
+To do this, we change our `book.js` model so that it contains:
 ```js
 classMethods: {
       associate: function(models) {
@@ -104,8 +104,8 @@ And we're going to change our `author.js` model so that it contains:
 Finally, we want sequelize to take care of making these changes to our database for us, so we're going to make a small change to `app.js` that will have sequelize check our models on each run and make any necessary changes.
 
 ```js
-db.sequelize.sync().then(function() {
-  var server = app.listen(3000, function() {
+  db.sequelize.sync().then(function() {
+    var server = app.listen(3000, function() {
     console.log(new Array(51).join("*"));
     console.log("\t LISTENING ON: \n\t\t localhost:3000");
     console.log(new Array(51).join("*")); 
@@ -142,3 +142,11 @@ app.get("/books", function (req, res) {
 It's just one extra line: `{include: [db.author]}`
 
 Basically, this tells Sequelize, "Hey! Remember that association we set up between `book` and `author`, for each book that you grab from the database, figure out the author using the `authorId` foreign key, and add that author's information to the information returned with each book.
+
+#### So how would we go about grabbing all authors and all the books associated with each one using Sequelize?
+
+One way to do this is to use some special methods that Sequelize will create for you. These methods are called **getters and setters**.
+
+Let's review the Sequelize documentation together and see if we can spot how we might do this.
+
+[Sequelize Documentation](http://sequelize.readthedocs.org/en/latest/)
