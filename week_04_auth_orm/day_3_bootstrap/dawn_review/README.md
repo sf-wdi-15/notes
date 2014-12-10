@@ -142,3 +142,42 @@ app.get("/books", function (req, res) {
 It's just one extra line: `{include: [db.author]}`
 
 Basically, this tells Sequelize, "Hey! Remember that association we set up between `book` and `author`, for each book that you grab from the database, figure out the author using the `authorId` foreign key, and add that author's information to the information returned with each book.
+
+### More On Using Associations
+
+If we setup an association where a `db.author.hasMany(db.book)` then we can efficiently express getting all the books associated with the author.
+
+```
+db.author.find(1)
+  .then(function (foundAuthor) {
+    // use the foundAuthor and get all their books
+    foundAuthor.getBooks()
+    .then(function (foundBooks) {
+      console.log(foundAuthor);
+      console.log(foundBooks);
+    })
+  })
+
+```
+
+If we setup the reverse association `db.book.belongsTo(db.author)` then we have access to the author using the `book.getAuthor()`.
+
+```
+db.book.find(1)
+ .then(function (book) {
+    // a book belongs to just 1 author
+    book.getAuthor()
+    .then(function (author) {
+      console.log(book)
+      console.log(author);
+    });
+ })
+```
+
+
+
+
+
+
+
+
