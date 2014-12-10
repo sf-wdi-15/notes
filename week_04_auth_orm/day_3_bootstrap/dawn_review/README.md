@@ -119,3 +119,26 @@ $ nodemon
 ```
 ...our database should be automatically updated with the appropriate foreign keys automatically. But we can check to make sure using `psql` in our terminal.
 
+#### Fixing the Routes to Work with Our 'authors' Table
+
+So, we've now changed the structure of our database. It's a good change, because if the same author wrote many books, that author's name wouldn't appear in the "books" table over and over again. But we still need to change our app to accomodate. 
+
+But don't worry, it's a very small change.
+
+Here's our new `/books` route. Can you spot the difference?
+```js
+app.get("/books", function (req, res) {
+  db.book.findAll(
+    {include: [db.author]}
+    ).then(function(books) {
+    console.log("Showing all books:",books);
+
+    res.render("books/index", {bookList: books});
+  });
+  
+});
+```
+
+It's just one extra line: `{include: [db.author]}`
+
+Basically, this tells Sequelize, "Hey! Remember that association we set up between `book` and `author`, for each book that you grab from the database, figure out the author using the `authorId` foreign key, and add that author's information to the information returned with each book.
