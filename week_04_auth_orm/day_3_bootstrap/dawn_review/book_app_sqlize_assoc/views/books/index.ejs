@@ -1,0 +1,24 @@
+<!DOCTYPE>
+<html>
+<head>
+  <title>Book App</title>
+</head>
+<body>
+  <p>
+    <a href="/books/new"><b>Add a book</b></a>
+  </p>
+  <% bookList.forEach(function (book) { %>
+    <div>
+      <h2>
+        <a href="/books/<%= book.id %>"><%= book.title %></a>
+      </h2>
+      <p>Synopsis: <%= book.synopsis %>
+      </p>
+      <p>
+        Author: <%= book.author.firstname %> <%= book.author.lastname %>
+      </p>
+    </div>
+  <% }) %>
+  
+</body>
+</html>

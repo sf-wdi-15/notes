@@ -1,0 +1,26 @@
+<!DOCTYPE>
+<html>
+<head>
+  <title>Book App</title>
+</head>
+<body>
+  <p><a href="/books">Back to list</a></p>
+  <div>
+    <h2>
+      <a href="/books/<%= book.id %>"><%= book.title %></a>
+    </h2>
+    <p>
+      Synopsis: <%= book.synopsis  %>
+
+    </p>
+    <p>
+      Author: <%= book.author.firstname %> <%= book.author.lastname %>
+    </p>
+  </div>
+  <div>
+    <form action="/books/<%= book.id %>?_method=DELETE" method="post">
+      <button>DELETE</button>
+    </form>
+  </div>
+</body>
+</html>
