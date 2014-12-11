@@ -1,5 +1,8 @@
 # Concepts Review
 
+#### UPDATE 12-10-14:
+*If you'd like to review the code we worked on together in class (books app with associated authors, teachers example), I've moved it to a [separate repository here on GitHub called "associations_examples"](https://github.com/sf-wdi-15/associations_examples).*
+
 We've thrown a lot of new information at you this week. So let's take a moment to review.
 
 ## Sequelize
