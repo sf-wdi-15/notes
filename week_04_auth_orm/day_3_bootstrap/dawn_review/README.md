@@ -176,6 +176,15 @@ db.book.find(1)
 
 
 
+### Creating A Book Associated to An Author
+
+```
+ db.book.create({title: "associated book", authorId: 1}).then( function (book) {
+  console.log(book);
+});
+```
+
+
 
 
 
