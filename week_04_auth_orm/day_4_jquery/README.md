@@ -101,9 +101,12 @@ $('p.anotherClass') // Selects all <p> tags that also have the class "anotherCla
 If you use variable assignment when doing a selection, a "jQuery" object is returned
 
 ```js
+// We prepend '$' to variable names when a variable is going to be a jQuery object to help us remember what that variable is for.
 var $jqObject = $('p'); // Returns a jQuery object containing all <p> tags on your web page.
 
 ```
+
+Just like in Node, where using require() adds functionality to our variable (think `var pg = require('pg')`), the "jQuery Object" that is created above has additional methods added to it. And we're about to go over some of those methods below.
 
 
 #### Selecting a DOM element and changing it's content
@@ -126,6 +129,16 @@ $('#myDiv').html("Goodbye world!");
 ```
 
 See it in action [here](http://jsbin.com/rirumatozu/4/edit?html,js,output)
+
+If we wanted to **save our selection as a jQuery object**, the code would look like this instead:
+```js
+// First we select the element we want and save it as a jQuery object
+var $myDiv = $('#myDiv');
+
+// Then we use our jQuery object to perform our task
+$myDiv.html("Goodbye world!");
+
+```
 
 There are three things about the example above that make jQuery easier to use:
   1. jQuery is using the same syntax as CSS to select elements.
@@ -173,144 +186,71 @@ In the jQuery code example above, we first select the DIV with id="container", t
 You can [see this in action on JSBin](http://jsbin.com/rocabu/1/edit?html,js,output)
 
 
-[example](http://jsbin.com/jepoz/2/edit)
+#### Modifying Styles (CSS) Using jQuery
 
-### Selectors in jQuery
+You can do more than select elements and modify content. You can also create or update CSS style attributes in jQuery using the .css() method
 
-In jQuery selecting elements is very similar to `querySelectorAll` (in the JS DOM API). To get a DOM element we use `$('selector')` to fetch the element from the DOM.
+```js
+$("#myDiv").css("color", "red");
+```
 
-Let's do an `#id` example,
-    
-    <div id="myDiv">
-        Hello World!!
-    </div>
-    
-    <script>
-        $("#myDiv").css("color", "blue")
-    </script>
-    
+The code above will change the color of all text inside the DIV with id="myDiv" to red.
 
+[Check this out here](http://jsbin.com/cupumu/1/edit?html,js,output)
 
-Or if it's a CSS class, we'd instead say `$(".myClass")`
+Or, if we have a bunch of elements that all have the same class (in this example, it's class="myClass"), we can use the class selector to modify the color of all of them at once:
 
-    <div class="myClass">
-        Hello World!!
-    </div>
-    
-    <div class="myClass">
-        Hello World!!
-    </div>
-        
-    <div class="myClass">
-        Hello World!!
-    </div>
-    <script>
-        $(".myClass").css("color", "blue")
-    </script>
+```js
+$(".myClass").css("color", "blue");
+```
 
-With  a random color
-    
-    <div class="myClass">
-        Hello World!!
-    </div>
-    
-    <div class="myClass">
-        Hello World!!
-    </div>
-        
-    <div class="myClass">
-        Hello World!!
-    </div>
-    
-    <script>
-      var randVal = function(){
-        return Math.floor(Math.random()*255);
-      };
-      
-      var randColor = function(){
-        var red = randVal();
-        var green = randVal();
-        var blue = randVal();
-        
-        return "rgb("+red +","+green+","+blue+")";
-      }
-      $(".myClass").css("color", randColor())
-    </script>
+[You'll find this example here](http://jsbin.com/yutoyi/1/edit?html,js,output)
 
-### Appending elements
-Moving elements
+But that seems kind of boring. I mean, what if we want to do something with less hard-coding using jQuery.
 
-[`example_4`](http://jsbin.com/owoLELUf/1/edit)
+[Here's a repeat of the last example](http://jsbin.com/wevoti/1/edit?html,js,output) that sets the text in all elements of class="myClass" to a random color:
 
-     <style>
-        #funList {
-          border: dashed 1px blue;
-          padding: 10px;
-        }
-        
-    </style>    
+```js
+var randColorValue = function() {
+  return Math.floor( Math.random() * 255 );
+}
 
-    <div id="funList">
-     
-        <div id="funItem">
-            Fun Stuff
-        </div>
-    </div>
-    
-    <script>
-      var sampleData = {text: "Brooklyn Austin YOLO drinking vinegar authentic, fixie trust fund skateboard leggings fap mustache. Tote bag tattooed food truck DIY. Art party bespoke selvage narwhal four loko. High Life twee organic polaroid raw denim, Truffaut cred irony Pitchfork retro put a bird on it. Bushwick mlkshk yr viral Odd Future pour-over. Sartorial lomo organic whatever Portland. Disrupt deep v chia pug actually selfies, Pinterest mlkshk meh roof party."}
-        
-      var $sampleDiv = $("<div> " + sampleData["text"] + "</div>");
-      
-      $("#funList").append($sampleDiv);
-       
-    </script>
-    
+var randColor = function() {
+  var red = randColorValue();
+  var green = randColorValue();
+  var blue = randColorValue();
+  
+  return "rgb(" + red + "," + green + "," + blue + ")";
+  
+}
 
-[`example_5`](http://jsbin.com/USuqEne/1/edit)
+$(".myClass").css("color", randColor() );
+```
 
-    <style>
-        #funList {
-          border: dashed 1px blue;
-          padding: 10px;
-        }
-        
-        #crazyList {
-          border: dashed 1px red;
-          padding: 10px;
-        }
-    </style>    
+#### Applying what we've learned to a real-world site:
 
-    <div id="funList">
-     
-        <div id="funItem">
-            Fun Stuff
-        </div>
-    </div>
+Go to http://www.reddit.com
 
-    <div id="crazyList">
-      
-    </div>
-    
-    <script>
-        // Select `#funItem`
-       var $funItem = $("#funItem");
-       // Change color of `$funItem`
-       $funItem.css("color", "red");
-       
-       //Move the $moveItem
-       $("#crazyList").append($funItem);
-    </script>
+Reddit uses jQuery, so we can use our Chrome developer console to manipulate the site in real time using jQuery.
+
+To do this, once Reddit.com has loaded, go to your view menu in Chrome. Select View > Developer > Javascript Console
+
+Once that's loaded, try entering the following command into the Chrome REPL:
+
+```js
+$('img').hide()
+```
+
+Hit enter. All the images should have disseapeared from the Reddit.com home page. Make sure you understand why before moving on.
+
+Now try this:
+```js
+$('img').show()
+```
+
+That should have brought all the images back. Make sense so far?
+
+Now try some of the other examples we've gone over in the Chrome REPL and see what happens to the Reddit.com website. Remember, this is your laboratory — your chance to experiment and learn. Make use of it.
 
 
-### Exercises:
-
-* Hidden forms fields
-    * Create a div that says click me, and when clicked updates a count variable called `numberOfClicks`    
-    * Create a form that has a hidden input field for `numberOfClicks`
-    * on form submit `alert` the `numberOfClicks`
-* Use jQuery to design a form that allows you to dynamically update form fields:
-    * Make a form for a new `event` that accepts a `event[name]` and `event[organizer]`.
-    * Add an `invite friends` button that appends an `input` field to the form and that expect an `email`.
-    * Add an input field for `event[invites][...]` where `[...]` should hold the current count of `invites`
- 
+### More jQuery Coming Soon!
