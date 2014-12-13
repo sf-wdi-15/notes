@@ -1,4 +1,4 @@
-# Intro to jQuery
+# Intro to jQuery - Part I
 
 ## NOTES
 1. Examples of jQuery are shown below using JSBin. I encourage you to experiment with the examples in JSBin to get a feel for how they work. However, before doing so, please clone the JSBin so you don't alter the original. To do this, in the JSBin menus, go to File > Clone.
@@ -11,6 +11,7 @@
   4. Add and remove DOM elements using jQuery
   5. Bind events with jQuery
   6. Explore jQuery Widgets (maybe)
+  7. Talk some more about the jQuery object and how it works (maybe)
 
 ## What is jQuery?
 jQuery is a 3rd-party library that is intended to make front-end development tasks — particularly those involving DOM selection and manipulation — easier, faster, and more fun.
@@ -259,4 +260,4 @@ That should have brought all the images back. Make sense so far?
 Now try some of the other examples we've gone over in the Chrome REPL and see what happens to the Reddit.com website. Remember, this is your laboratory — your chance to experiment and learn. Make use of it.
 
 
-### More jQuery Coming Soon!
+### Part II of jQuery Lesson Available in Week 4 > Day 4 > Dusk
