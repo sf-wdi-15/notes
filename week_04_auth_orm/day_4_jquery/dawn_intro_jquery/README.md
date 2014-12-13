@@ -1,5 +1,9 @@
 # Intro to jQuery
 
+## NOTES
+1. Examples of jQuery are shown below using JSBin. I encourage you to experiment with the examples in JSBin to get a feel for how they work. However, before doing so, please clone the JSBin so you don't alter the original. To do this, in the JSBin menus, go to File > Clone.
+2. It's simply not possible for me to teach you everything about JQuery in a written introduction (though I wish I could). Below, I introduce the basic ideas and explain some of the general syntax, but if you want to become great with jQuery, I recommend you visit the documentation at http://api.jquery.com/, poke around, and try some stuff out in your own [JSBin](http://www.jsbin.com/).
+
 ## Objectives
   1. Understand what jQuery is, and when to use it
   2. Learn how to include jQuery in your projects
@@ -208,7 +212,7 @@ $(".myClass").css("color", "blue");
 
 But that seems kind of boring. I mean, what if we want to do something with less hard-coding using jQuery.
 
-[Here's a repeat of the last example](http://jsbin.com/wevoti/1/edit?html,js,output) that sets the text in all elements of class="myClass" to a random color:
+[Here's a repeat of the last example](http://jsbin.com/wevoti/1/edit?html,js,output) that sets the text in all elements of class="myClass" to a random color. Try to understand how it works before moving on:
 
 ```js
 var randColorValue = function() {
