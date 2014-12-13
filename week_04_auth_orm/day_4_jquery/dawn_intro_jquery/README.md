@@ -108,6 +108,8 @@ If you use variable assignment when doing a selection, a "jQuery" object is retu
 // We prepend '$' to variable names when a variable is going to be a jQuery object to help us remember what that variable is for.
 var $jqObject = $('p'); // Returns a jQuery object containing all <p> tags on your web page.
 
+// However, we don't have to prepend '$' to our variables. It's just so we can remember what a variable is being used for.
+var jqObject = $('p'); // This is functionally identical to the version above that includes the '$' in front of jqObject.
 ```
 
 Just like in Node, where using require() adds functionality to our variable (think `var pg = require('pg')`), the "jQuery Object" that is created above has additional methods added to it. And we're about to go over some of those methods below.
