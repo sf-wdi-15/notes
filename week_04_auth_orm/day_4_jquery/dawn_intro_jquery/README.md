@@ -93,7 +93,7 @@ $(' ')
 $('h2') // selects all h2 elements
 
 // To select by ID, you use the same syntax as CSS selectors
-$('#someID') // Would select all elements with id="someID"
+$('#someID') // Would select the element with ID="someID"
 
 // To select all elements of a particular class, use CSS syntax again
 $('.someClass') // Selects all elements of the class "someClass"
