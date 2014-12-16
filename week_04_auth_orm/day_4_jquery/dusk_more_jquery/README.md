@@ -48,7 +48,11 @@ $newDiv.html("Farm-to-table Godard roof party bespoke, fashion axe mustache viny
 // Set it's class to innerItem
 $newDiv.addClass("innerItem");
 
-// Append our new element
+// Append our new element  
 $('#outerContainer').append($newDiv);
 ```
+
+See this in action (and play around with it) [on JSBin](http://jsbin.com/gupade/3/edit?html,js,output)
+
+*Updates to come...*
 
