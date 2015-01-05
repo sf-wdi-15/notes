@@ -8,7 +8,7 @@ var pTimes = function(statement,num) {
 var pTimes2 = function(statement,num) {
   var i = 0;
   while(i < num) {
-    console.log(satement);
+    console.log(statement);
     i += 1;
   }
 }
