@@ -47,7 +47,7 @@ end
 
 # Exercise 4
 def printContacts(contacts)
-  contacts.each do |k,v|
+  contacts.each do |k,v,l|
     puts k, v
   end
 end
@@ -110,11 +110,12 @@ end
 # puts reverseStr "hello world"
 
 def partialSums(arr)
-  sums = []
-  sums.push(arr.inject(0) do |memo,x|
-    sums.push(memo)
+  sums = [0]
+ arr.inject(0) do |memo,x|
+    sums.push(memo+x)
     memo+x
-  end)
+  end
+ sums
 end
 
 # p partialSums [1,2,3]
@@ -151,5 +152,6 @@ def factorial(n)
 end
 
 # puts factorial 4
+
 
 
