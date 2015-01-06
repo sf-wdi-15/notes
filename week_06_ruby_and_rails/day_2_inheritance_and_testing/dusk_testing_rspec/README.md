@@ -68,4 +68,97 @@ And our tests, namely, the creation of a new User and assignment of that user's 
 
 Note the difference between testing for behavior and testing various 'assertions' (typical in TDD). Think back to our work with the `assert` module in Node. There, an 'assertion' was something like, `assert.equals(User.name, "Paul")`. While this _assertion_ would serve to test whether or not the name "Paul" had been properly applied to the user, the syntax itself is more difficult to understand and definitely doesn't provide us with clear picture of what behavior we are trying to verify. All it tells us is that when our application is working properly, User.name should be equal to "Paul".
 
+In contrast, our BDD statements, `describe` and `it` help to define the nature of the behavior, so we can understand exactly what behavior is being tested and write tests appropriately.   
+
 ### Why use TDD/BDD? 
+At this point the answer should be somewhat obvious. Using TDD/BDD methodologies allows us to make sure:
+  - We're building exactly the features we need, and nothing more.
+  - That our code works at each step along the way
+  - That if someone else modifies our code, they'll know if they've broken it
+  - That if we modify someone else's code, we'll know if we've broken it
+
+## RSpec
+
+So what is RSpec? 
+It's a Behavior-Driven Development framework. Used properly, it directs what code we write, and when.
+
+## Install RSpec
+
+Please run the following code at a bash prompt
+
+```bash
+$ gem install rspec
+$ rspec --v
+$ rspec --help
+```
+
+## Set up the RSpec Testing Environment
+
+Now, go to your working folder for today's lesson. In my case, that's
+
+```bash
+$ mkdir example
+$ cd example
+```
+_...day_2_inheritance_and_testing/dusk_testing_rspec/example_
+
+Now run the command
+
+```bash
+$ rspec --init
+```
+You should see the following output
+
+```bash
+create   .rspec
+create   spec/spec_helper.rb
+```
+
+This means that `rspec --init` created:
+  - .rspec - a file that allows you to configure the behavior of rspec within your project
+  - a new folder called `spec` that contains a file called `spec_helper.rb`. For now, don't worry about what `spec_helper.rb` actually does. The main thing to know is that your 'specs' (AKA tests) go in the spec folder.
+
+Before we move on, we want to open `.rspec` and check to ensure it contains the following lines of configuration information:
+
+```bash
+  --color
+  --format documentation
+```
+
+## Now, Let's Create a Simple Project
+
+For this first project using RSpec, we're going to create two classes: `Book` and `Library`
+
+To get started, we'll want to create a file for each class in our project directory. So run the following commands at a bash prompt:
+
+```bash
+$ touch book.rb
+$ touch library.rb
+```
+
+We also want to create a `_spec.rb` file for each class. This is where we'll write our tests. Run the following commands:
+
+```bash
+$ cd spec
+$ touch book_spec.rb
+$ touch library_spec.rb
+```
+
+Now, because our `spec_helper.rb` file is always included by default whenever we run the `rspec` command, and because we need to include our class files for our tests to work, we're going to use `require_relative` to make sure everything that's needed is included.
+
+Add the following to the top of `spec_helper.rb`:
+```rb
+require_relative '../library'
+require_relative '../book'
+
+# Ignore the automatically generated code
+```
+
+Ok! Now we're ready to start testing. But because part of the goal of this lesson is to show the methodology behind Behavior-Driven Development, we're going to build our tests (and, in response, our classes) together.
+
+Please switch over to Sublime by moving to your main project directory and typing the following:
+
+```bash
+$ subl .
+```
+
