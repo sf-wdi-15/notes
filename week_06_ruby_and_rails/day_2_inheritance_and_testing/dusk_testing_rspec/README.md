@@ -37,9 +37,10 @@ While Behavior Driven Development definitely incorporates the cycle defined by T
     3. How should tests be structured and named?
     We've already answered part of this question actually. In BDD, we use `"describe"` and `"it"` blocks to create tests that read like complete sentences.
 
-To get a better understanding of this, consider the following example:
-`user_spec.rb`
+####To get a better understanding of this, consider the following example:
+File: __user_spec.rb__
 ```rb
+
 require_relative 'user'
 
 describe User do
@@ -49,9 +50,8 @@ describe User do
     end
 end
 ```
-In this case, the class we're testing would likely look something like this:
 
-`user.rb`
+File: __user.rb__
 ```rb
 class User
     def initialize (name)
