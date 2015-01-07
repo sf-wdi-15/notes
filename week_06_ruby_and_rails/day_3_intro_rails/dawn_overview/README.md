@@ -743,7 +743,7 @@ The only difference now is that we will need to use the `id` of the object being
 			post '/planes', to: 'planes#create'
 			
 			# Route the incoming update using the id
-			put '/planes/:id', to 'planes#update'
+			put '/planes/:id', to: 'planes#update'
 		
 		end
 	
