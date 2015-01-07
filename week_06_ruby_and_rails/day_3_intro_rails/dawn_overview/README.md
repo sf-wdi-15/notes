@@ -677,9 +677,9 @@ We begin with handling the request from a client for an edit page.
 
 	`app/views/planes/edit.html.erb`
 	
-		<form action="/planes" method="post">
+		<form action="/planes/<%= @plane.id %>" method="post">
 			<input type="text" name="plane[name]" value="<%= @plane.name %>">
-			<input type="text" name="plane[type]" value="<%= @plane.design %>">
+			<input type="text" name="plane[design]" value="<%= @plane.design %>">
 			<textarea name="plane[description]" value="<%= @plane.description %>"></textarea>
 			<%= token_tag form_authenticity_token %>
 			
