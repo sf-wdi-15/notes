@@ -7,8 +7,6 @@
 
 ## Objectives
 
-Change
-
 By the end of the lesson, you should be able to:
 
   * Implement inheritance
