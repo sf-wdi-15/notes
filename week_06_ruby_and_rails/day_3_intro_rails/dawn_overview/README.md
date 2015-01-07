@@ -766,7 +766,7 @@ The only difference now is that we will need to use the `id` of the object being
 				plane.update_attributes(updated_attributes)
 				
 				#redirect to show
-				redirect_to "/posts/#{plane_id}"
+				redirect_to "/planes/#{plane_id}"
 			end
 			
 		end
