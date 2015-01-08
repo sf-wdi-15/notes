@@ -96,7 +96,7 @@ Now our app is up and running, [localhost:3000](localhost:3000/).
 Just put the third party css libraries in `vendor/assets` and for bootstrap just file it under stylesheets.
 
 ```
- curl https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css > vendorCreature/assets/stylesheets/bootstrap-3.2.0.min.css
+ curl https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css > vendor/assets/stylesheets/bootstrap-3.2.0.min.css
 ```
 ### Create A Creature 
 
