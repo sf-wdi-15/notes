@@ -77,6 +77,12 @@ REST stands for **REpresentational State Transfer**. We will demonstrate these p
 ### Setup Rails New
 
 
+Make sure you have your `psql` setup using `which psql` if nothing shows up then do the following:
+
+```
+echo 'export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin/' >> ~/.bash_profile && source ~/.bash_profile
+```
+
 
 * `$ rails new bog_app -T -d postgresql`
 * `$ cd bog_app`
