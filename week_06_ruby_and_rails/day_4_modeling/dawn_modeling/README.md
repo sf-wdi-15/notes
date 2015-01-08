@@ -34,6 +34,17 @@ In terminal you can type type rake -T. That's going to return a list of the task
 
 ##  Setup
 
+Make sure `psql` and other packages are part of your path. IF you type `which psql` and nothing shows up then do the following:
+
+```
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin/
+```
+
+also you should add the above to your `~/.bash_profile`.
+
+```
+echo 'export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin/` >> ~/.bash_profile && source ~/.bash_profile
+```
 
 Generate a new Rails project. Set it up to use Postgres as our database (`-d`). We're also excluding tests for now (`-T`) since we will be using a different testing package (RSpec) in the future.
 
