@@ -690,17 +690,7 @@ Let's refactor our `users#show` to require `logged_in?` using a `before_action`.
 class UsersController < ApplicationController
   before_action :logged_in?, only: [:show]
   
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.create(user_params)
-    redirect_to user_path(@user.id)
-  end
-
-  def show
-  end
+  ...
 end
 
 ```
