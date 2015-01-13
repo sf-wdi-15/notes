@@ -215,9 +215,9 @@ class CreateEnrollments < ActiveRecord::Migration
 end
 ```
 
-Make sure your save the file before running `$ rake db:migrate`. 
+Make sure your save the file before running `rake db:migrate`. 
 
-(Also, just a reminder, if you're using postgresql, be sure to run `$ rake db:create` first!)
+(Also, just a reminder, if you're using postgresql, be sure to run `rake db:create` first!)
 
 ---
 
