@@ -14,6 +14,8 @@ In rails, here are some things to remember when working with associations:
   - Understand how to create a join table
   - Understand how to create model instances when they have associations.
 
+---
+
 # Common Types of Relationships
 
 ## One to many (1:N)
@@ -25,6 +27,8 @@ Many pets `belongs_to` one owner
 (FK goes in the pets table)
 
 __Always remember__: Whenever there is a `belongs_to` in the model, there should be a FK in the matching migration!
+
+---
 
 ### So to set this up, in our models we would add
 
@@ -44,6 +48,8 @@ Now, as mentioned, we have to add a foreign key in our migration, so in our pets
 
 `t.references :owner`
 
+---
+
 ### Let's use our associated models
 
 Now, let's jump into our rails console by typing `rails c` at a command prompt, and check out how these new associations can help us define relationships between models:
@@ -62,6 +68,8 @@ brett.pets.each {|x| puts "My pet is named #{x.name}!"}
 fido.owner
 ```
 
+---
+
 #### What if I don't add my foreign key when I first create my models?
 
 If you were to make a mistake and forget to add your foreign key references at first, you can always fix this by adding the following to a new migration:
@@ -79,6 +87,8 @@ change_table :pets do |t|
   t.integer :owner_id
 end
 ```
+
+---
 
 ### Class Exercise 1
 
@@ -101,6 +111,8 @@ Once you've finished creating the models:
   4. Assign 2 items to the order with id = 2.
   5. Play around with some of the array methods you know (each, map, select, size) for each order
 
+---
+
 #### Exercise Bonus
 
 Using your knowledge of procs and blocks, try to select only the items in an order that are less than a certain price.
@@ -115,11 +127,15 @@ someorder.items.select do
 end
 ```
 
+---
+
 ## Many to Many (N:M) with 'through'
 
 Thinking back to Sequelize, you should remember that a N:M relationship is appropriate whenever both models can possess more than one of the other.
 
 Let's think about the example of students and courses. A student can take many courses and a course will have many students. If you think back to Sequelize, you'll recall that we used a _join_ table to create this kind of association.
+
+---
 
 ### A Typical 'Join' Table
 
@@ -137,6 +153,8 @@ student_id | course_id
 
 Let's make sure we understand how this _join table_ works before moving on.
 
+---
+
 ### So how do we create N:M associations in rails?
 
 We use the `has_many :relation, :through => :join` method. 
@@ -150,6 +168,8 @@ $ rails generate model Enrollment enrollment_date:date
 ```
 
 Note that "Enrollment" is our __join__ table.
+
+---
 
 After generating our models, we need to open them in sublime and edit them so they include the proper associations.
 
@@ -179,6 +199,8 @@ class Enrollment < ActiveRecord::Base
 end
 ```
 
+---
+
 We'll also want to modify the migration for the `enrollment` model before we run db:migrate. Make your enrollment model look like this:
 
 ```rb
@@ -200,6 +222,8 @@ Make sure your save the file before running `$ rake db:migrate`.
 
 (Also, just a reminder, if you're using postgresql, be sure to run `$ rake db:create` first!)
 
+---
+
 ### Let's test out our models!
 
 Open the rails console by running `rails c` in terminal.
@@ -220,6 +244,10 @@ english = Course.create(name: "English")
 french = Course.create(name: "French")
 ```
 
+---
+
+#### Associate our model instances
+
 Now, because we've used `:through`, we can create our associations in the same way we do for a 1:N association.
 
 ```rb
@@ -233,6 +261,10 @@ mike.courses << french
 # Here's a little trick: Use an array to associate multiple courses with a student in just one line of code.
 del.courses << [english, algebra]
 ```
+
+---
+
+#### Let's see if it worked
 
 Once you've done all of this, try the following and see if your output matches the below in _irb_.
 
@@ -249,6 +281,8 @@ del.courses.map(&:name)
 
 Side note: Anyone know why we're passing `&:name` to `.map` here? (Hint, it has something to do with Blocks and Procs)
 
+---
+
 ### Many-to-Many Exercise 
 
 Let's pair into groups of two. 
@@ -260,6 +294,8 @@ Your mission, should you wish to accept it:
   2. Use the rails console to add products and customers to 2-3 'sales' (or 'orders')
   3. Use the rails console to display all products and customers associated with each order.
 
+---
+
 # Less Common Associations
 
 For your reference only.
@@ -267,6 +303,8 @@ For your reference only.
   - [has_one](http://guides.rubyonrails.org/association_basics.html#the-has-one-association)
   - [has_one through:](http://guides.rubyonrails.org/association_basics.html#the-has-one-through-association)
   - [has_and_belongs_to_many](http://guides.rubyonrails.org/association_basics.html#has-and-belongs-to-many-association-reference)
+
+---
 
 ## Other Useful Notes
 
