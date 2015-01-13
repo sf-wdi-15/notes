@@ -100,16 +100,13 @@ Item: Name, description, price
 
 Be sure to think about what the relationship between _Orders_ and _Items_ should be.
 
-If the relationship is modeled correctly, you'll be able to assign a variable `o = Order.create` and then type `o.items` without getting back an error. 
-
-You should also be able to assign a variable `i = Item.create` and then type `i.order` without an error.
+If the relationship is modeled correctly, you'll be able to assign a variable `o = Order.create` and then type `o.items` without getting back an error. You should also be able to assign a variable `i = Item.create` and then type `i.order` without an error.
 
 Once you've finished creating the models:
   1. Create 5 items
   2. Create 2 Orders
-  3. Assign 3 items to the order with id = 1
-  4. Assign 2 items to the order with id = 2.
-  5. Play around with some of the array methods you know (each, map, select, size) for each order
+  3. Assign 3 items to the order with id = 1, and 2 items to order with id = 2.
+  4. Play around with some of the array methods you know (each, map, select, size) for each order
 
 ---
 
@@ -280,6 +277,12 @@ del.courses.map(&:name)
 ```
 
 Side note: Anyone know why we're passing `&:name` to `.map` here? (Hint, it has something to do with Blocks and Procs)
+
+???
+# Why &:name Notes
+&something is the unary ampersand operator. 
+
+This operator is used to convert a proc to a block and vice versa. It's very useful when you want to pass a Proc into a method that takes a block as an argument (either explicity or with the yield keyword).
 
 ---
 
