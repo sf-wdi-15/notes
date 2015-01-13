@@ -1,0 +1,17 @@
+<h1>Login</h1>
+<% flash.each do |k,v| %>
+  <h2 id="<%= k %>"><%= v %></h2>
+<% end %>
+
+
+
+
+<%= form_for :user do |f| %>
+<%= f.text_field :email, placeholder: "Enter your email!" %>
+<%= f.password_field :password, placeholder: "password" %>
+<%= f.submit "Login" %>
+
+<% end %>
+
+<%= link_to "Forgot Password?", new_password_path %>
+
