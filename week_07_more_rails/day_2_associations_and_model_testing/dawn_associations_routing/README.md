@@ -278,12 +278,6 @@ del.courses.map(&:name)
 
 Side note: Anyone know why we're passing `&:name` to `.map` here? (Hint, it has something to do with Blocks and Procs)
 
-???
-# Why &:name Notes
-&something is the unary ampersand operator. 
-
-This operator is used to convert a proc to a block and vice versa. It's very useful when you want to pass a Proc into a method that takes a block as an argument (either explicity or with the yield keyword).
-
 ---
 
 ### Many-to-Many Exercise 
