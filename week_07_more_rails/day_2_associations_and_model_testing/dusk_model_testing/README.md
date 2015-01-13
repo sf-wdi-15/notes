@@ -57,44 +57,42 @@ This is only necessary if you had a model created before you installed rspec.
 Run your rspec tests (they should all pass as you don't have any)  
 
 *Terminal*  
-`rspec` or `bundle exec rspec`
+`bundle exec rspec` or `bin/rspec`
 
 To run specific specs
 
 ```
 # Run only model specs
-rspec spec/models
+`bin/rspec spec/models`
 
-# Run only specs for AccountsController
-rspec spec/controllers/accounts_controller_spec.rb
+# Run only specs for AccountsController (Assuming such a controller exists)
+`bin/rspec spec/controllers/accounts_controller_spec.rb`
 ```
 
 ###Exercise (Model Specs)
 __________________
 
-**1.** Write a spec to verify your solution to Exercise 1 from rails_console_lab:
+Write a spec to verify your solution to Class Exercise 1 (one-to-many)
 
-       1. Using the new/save syntax, create a student, first and last name and an age
+  - You'll want to generate a spec for both your Order model and your Item model.
+  - For your order model, write a test to make sure the order name is being returned correctly
+  - For your items model, write a few tests to ensure that the item name, description, and price are all being returned correctly.
+  - Don't forget to use the `before` and `after` keywords to generate at least one order and at least one item to test against in your specs.
 
-**2.** Write a spec to verify your solution to Exercise 2 from rails_console_lab:
+### Bonus Example (Controller Specs)
 
-       2. Save the student to the database
+Don't feel bad if this one is out-of-reach (for now).
 
-**3.** Anything else? Test our regex?
+To help you figure things out, let's break into groups. This will be a pair programming exercise.
 
-### Example (Controller Specs)
-
-Pair programming exercise.
-
-The rails-rspec documentation (see Resource#1) has a very interesting
+The rails-rspec documentation (see Resource #1) has a very interesting
 "Controller Specs" example.  They test something called
 PostsController, which happens to be the name of our controller in our
-rails_blog_lab. Let's add a controller spec to last night's lab.
+rails_blog_lab. Let's add a controller spec to the blog lab.
 
-**1.** Switch to your rails_blog_lab project
+__1.__ Switch to your rails_blog_lab project
 
-**2.** Install 'rspec-rails' in the project by repeating steps 1 & 2
-  from the "Rails Installation" instructions above.
+__2.__ Install 'rspec-rails' in the project by repeating steps 1 & 2 from the "Installation" instructions above.
   
 Hint:
 
@@ -111,12 +109,13 @@ Hint:
 `rails generate rspec:install`  
 
 
-**3.** Generate a spec file for your PostsController
+__3.__ Generate a spec file for your PostsController
 
-      rails generate rspec:controller posts
+  The following command is only used if you have created models before installing the `rspec-rails` gem.
+    - rails generate rspec:controller posts
 
-**4.** Follow the example in the rspec-rails documentation. It fits
-  our use case surprisingly well.
+__4.__ Follow the example in the rspec-rails documentation. It fits
+our use case surprisingly well.
 
 ### Terms
 
