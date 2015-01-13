@@ -1,0 +1,6 @@
+<h1>Enter your email to reset password</h1>
+
+<%= form_tag passwords_path do %>
+<%= text_field_tag :email, nil, placeholder: "Enter your email" %>
+<%= submit_tag "Reset Password" %>
+<% end %>
