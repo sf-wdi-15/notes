@@ -106,3 +106,13 @@ Please reset your email using the link below
 <%= link_to "Reset Password", edit_password_url(@user.code) %>
 ```
 
+##Add edit method to passwords controller
+```
+def edit
+   code = params[:id]
+   @user = User.find_by(code: code)
+   puts "THIS IS USER \n \n \n \n \n"
+    puts user
+ end
+```
+##Create View
