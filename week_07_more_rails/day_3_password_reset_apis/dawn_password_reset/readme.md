@@ -116,3 +116,12 @@ def edit
  end
 ```
 ##Create View
+```
+<%= @user.email %>
+<%= form_for :user do |f| %>
+  <%= f.password_field :password %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.submit "Update" %>
+<% end %>
+```
+
