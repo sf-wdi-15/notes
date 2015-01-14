@@ -118,10 +118,37 @@ def edit
 ##Create View
 ```
 <%= @user.email %>
-<%= form_for :user do |f| %>
+<%= form_for :user, url: "/passwords/#{@user.code}" do |f| %>
   <%= f.password_field :password %>
   <%= f.password_field :password_confirmation %>
   <%= f.submit "Update" %>
 <% end %>
 ```
+##  Add the route to the `POST "/passwords/:id"`
 
+`routes.rb`
+
+```
+...
+  post "/passwords/:id", to: "passwords#update"
+...
+
+```
+
+
+## Add The `Passwords#update` Method
+
+```
+  def update
+   code = params[:id]
+   @user = User.find_by(code: code)
+   if @user.update_attributes params.require(:user).permit(:password, :password_confirmation)
+    #invalidate the @user.code to avoid replay
+    @user.code = nil
+    @user.save
+    redirect_to root_path
+   else
+    redirect_to "/passwords/#{@user.code}"
+   end
+  end
+```
