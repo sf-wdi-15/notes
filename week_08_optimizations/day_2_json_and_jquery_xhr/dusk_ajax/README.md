@@ -331,6 +331,8 @@ $taco.done(function(result) {
 
 Remember, the `$` prepended to the variable name `$taco` is just to help us remember that we are dealing with a jQuery object. It does not affect the nature of the variable in any way.
 
+If you want to check out, and play around with a live example that uses something like the code above, [I've created a JSBin that searches OMDb and displays the results.](http://jsbin.com/jiroruyobe/8/edit?html,js,output)
+
 ### Same-Origin-Policy and JSONP
 
 One of the most important security measures is what's called the Same-Origin Policy which only permits scripts running on pages originating from the same site – a combination of scheme, hostname, and port number[1] – to access each other's DOM with no specific restrictions, but prevents access to DOM on different sites. When you request JSON or other data from other sites using JavaScript, you may encounter this error which can be solved multiple ways, we will show you JSONP. JSONP allows you to make a request from one site for JSON data from another site.
