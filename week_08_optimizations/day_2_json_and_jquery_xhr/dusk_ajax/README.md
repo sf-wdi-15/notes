@@ -7,7 +7,7 @@
 
 ##So what is AJAX?
 
-AJAX stands for _**A**synchronous **J**avascript **a**nd **X**ML_.
+[AJAX](http://en.wikipedia.org/wiki/AJAX) stands for _**A**synchronous **J**avascript **a**nd **X**ML_.
 
 When we say that we're going to use __AJAX__, we're saying that we're going to use a combination of techniques and web technologies to access data for use in the front-end of a web application.
 
@@ -40,7 +40,7 @@ To start using jQuery, visit http://code.jquery.com and copy the link to the 1.1
 </html>
 ```
 
-Note that we can also include the `<script>` tag in the head of our HTML. However, it's often become common practice to include jQuery at the end of the body because this allows the entire page to load before downloading and processing jQuery, which can improve load times.
+Note that we could also put the `<script>` tag in the head of our HTML. However, many devs choose to include jQuery at the end of the body because this allows the entire page to load before downloading and processing jQuery— which can improve load times.
 
 
 ##Using AJAX
@@ -59,13 +59,13 @@ Each of these methods performs the same basic action (they each make a HTTP requ
 
 So, let's talk about each of these methods a bit more.
 
-For each method we discuss below, we'll be using the [OmDBAPI](http://www.omdbapi.com) as an example.
+For examples below, we'll be using the [OMDb API](http://www.omdbapi.com).
 
-###$.ajax()
+### [$.ajax()](http://api.jquery.com/jQuery.ajax/) ###
 
 This function underlies all AJAX requests in jQuery. And while you can certainly use it to make your requests, it's often unnecessary to call this function since there are several higher-level alternatives like `$.get()`, `$.post()`, and `$.getJSON()` which are easier to use. If, however, you need more precise control of your request, $.ajax() allows you to fine tune your requests in a very precise way.
 
-In jQuery versions 1.5 and later, you can pass a single settings object to the `$.ajax()` method, with string/value pairs to configure the request. For more complete details, see the documentation on the [ajax settings object](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings).
+In jQuery versions 1.5 and later, you can pass a single settings object to the `$.ajax()` method, with string/value pairs to configure the request. For a list of all the settings available, see the documentation on the [ajax settings object](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings).
 
 If you use this format of `$.ajax()`, the only required option is `url`
 ```js
@@ -84,13 +84,13 @@ $.ajax({
   success: function (data, textStatus, jqXHR) {
     if (textStatus === "success") {
         // If the request was successful, then
-        $("body").html(data.Title);
+        $("body").html(data.Key);
     }
   }
 });
 ```
 
-###$.get()
+### [$.get()](http://api.jquery.com/jQuery.get/) ###
 
 Because all of jQuery's AJAX methods are based on `$.ajax()`, this function is essentially a shorthand for the following:
 
@@ -179,7 +179,7 @@ $.get(url)
 });
 ```
 
-### $.getJSON() ###
+### [$.getJSON()](http://api.jquery.com/jQuery.getJSON/) ###
 
 The `$.getJSON()` function works just like the standard `$.get()` function except that the `dataType` parameter is automatically set to `"json"`.
 
@@ -220,7 +220,7 @@ $.getJSON(url, function(data) {
 });
 ```
 
-### $.post() ###
+### [$.post()](http://api.jquery.com/jQuery.post/) ###
 
 The `$.post()` function works the same way as the `$.get()` function, except that it uses the HTTP method "POST" when making its request.
 
@@ -293,7 +293,6 @@ var movieQuery = function(query) {
 // Now we use any of the promise methods we talked about 
 // earlier to set what happens when the results are in.
 movieQuery("Titanic").done(function(result) {
-    console.log("The search was successful!")
     console.log("The results are:");
     console.log(JSON.parse(result));
 });
