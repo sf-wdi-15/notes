@@ -59,7 +59,101 @@ Each of these methods performs the same basic action (they each make a HTTP requ
 
 So, let's talk about each of these methods a bit more.
 
+For each method we discuss below, we'll be using the [OmDBAPI](http://www.omdbapi.com) as an example.
+
 ###$.ajax()
+
+This function underlies all AJAX requests in jQuery. And while you can certainly use it to make your requests, it's often unnecessary to call this function since there are several higher-level alternatives like `$.get()`, `$.post()`, and `$.getJSON()` which are easier to use. If, however, you need more precise control of your request, $.ajax() allows you to fine tune your requests in a very precise way.
+
+In jQuery versions 1.5 and later, you can pass a single settings object to the `$.ajax()` method, with string/value pairs to configure the request. For more complete details, see the documentation on the [ajax settings object](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings).
+
+###$.get()
+
+This function is essentially a shorthand for the following:
+
+```js
+$.ajax({
+  url: url, // The URL of the request
+  success: success, // Callback function to tell jQuery what to do if the request is successful
+  dataType: dataType, // The dataType to expect (i.e., "json", "xml", etc)
+  type: "GET" // Sets the request type to GET (could also be 'POST', 'PUT', etc)
+});
+```
+
+Here's an example of how we might use this function to search the OmDbAPI for all movies containing the word "Stargate":
+
+```js
+// Set the URL to use for the search
+var url = "http://www.omdbapi.com/?s=Stargate";
+
+// Make the request
+$.get(url, function (data) {
+    // In this case, 'data' contains the results of our search as a JSON string
+    console.log(data);
+
+    // In most cases, to actually use the search results, we'd want to say something like:
+    var jsonData = JSON.parse(data);
+    console.log(jsonData);
+});
+```
+
+Note that while you can get away with only passing the `data` parameter to the callback function, it actually takes 3 arguments:
+  - `data`: The data we're looking for with our request in whatever format the server uses (usually JSON)
+  - `textStatus`: A string returned by jQuery to indicate whether the request was successful. When successful, this string will be 'success'.
+  - `jqXHR`: This is the [_jQuery XMLHttpRequest object_](http://api.jquery.com/jQuery.ajax/#jqXHR) which is a superset of the standard XMLHttpRequest object. It includes information about the request itself, its state, and the resulting headers and body.
+      + Note that `$.get()` and the other AJAX functions in jQuery also return the jqXHR object, so if you write `var res = $.get(...)` then `res` will be a reference to the jqXHR object.
+      + You can try this in the Chrome REPL and then type `res` if you'd like to take a look at what's inside this object.
+
+There's another way to setup your callbacks using method chaining. The chained methods below represent methods that are part of jQuery's `Deferred` object. These methods are called [__promises__](http://api.jquery.com/category/deferred-object/).
+
+```js
+// Set the URL to use for the search
+var url = "http://www.omdbapi.com/?s=Stargate";
+
+// Make your request
+var taco = $.get(url)
+// Tell jQuery what to do if the request succeeds
+.done(function (data, textStatus, jqXHR) {
+    console.log(data);
+    alert("The request was a success");
+})
+// And what to do if the request fails
+.fail(function (data, textStatus, jqXHR) {
+    alert("The request failed!");
+});
+```
+
+There's a few other ways you can use promises to define your callbacks, and each will be executed under different conditions.
+
+The `.always()` promise will be run whether the request was a success or a failure, but the values passed to `data`, `textStatus`, and `jqXHR` will change depending upon the result.
+
+```js
+$.get(url)
+.always(function (data, textStatus, jqXHR) {
+    // Note how we test the value of textStatus to determine whether the request was successful
+    if (textStatus === "success") {
+        console.log(data);
+        alert("The request was a success")
+    } else {
+        alert("The request failed!");
+    };
+});
+```
+
+
+The `.then()` promise will also run regardless of success or failure, but it takes two functions as parameters. The first function defines what to do in case of success, and the second defines what to do in case of failure:
+```js
+$.get(url)
+.then(function(data, textStatus, jqXHR) {
+    // The first function is used if the request succeeds
+    console.log(data);
+    alert("The request was a success")
+}, function(data, textStatus, jqXHR) {
+    // This second function is used if the request fails
+    alert("The request failed!");
+});
+```
+
 
 
 
