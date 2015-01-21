@@ -54,8 +54,8 @@ $.get(url)
 var url = "http://www.omdbapi.com/";
 var query = "Stargate";
 $.ajax({
-    url: url
-    data: {s: query}
+    url: url,
+    data: {s: query},
     success: function(result) {
         alert("Success");
         $("#response2").html(result.Search);
