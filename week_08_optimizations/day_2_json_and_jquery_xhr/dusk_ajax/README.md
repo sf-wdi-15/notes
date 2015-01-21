@@ -47,7 +47,7 @@ Note that we can also include the `<script>` tag in the head of our HTML. Howeve
 
 In pure javascript, (without jQuery), we'd use something called the `XMLHttpRequest object` to make AJAX calls to APIs and other servers.
 
-In jQuery, we use the following methods:
+In jQuery, we use the following methods (and others) to make AJAX requests:
 ```js
 $.ajax()
 $.get()
@@ -67,9 +67,32 @@ This function underlies all AJAX requests in jQuery. And while you can certainly
 
 In jQuery versions 1.5 and later, you can pass a single settings object to the `$.ajax()` method, with string/value pairs to configure the request. For more complete details, see the documentation on the [ajax settings object](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings).
 
+If you use this format of `$.ajax()`, the only required option is `url`
+```js
+$.ajax({
+  url: url, // The URL of the request
+});
+```
+
+But a more common example might look something like this:
+```js
+$.ajax({
+  url: url, // The URL of the request
+  // By explicitly setting the dataType, jQuery will automatically parse 
+  // the JSON string into an object, and 'data' will then be that object
+  dataType: "json",
+  success: function (data, textStatus, jqXHR) {
+    if (textStatus === "success") {
+        // If the request was successful, then
+        $("body").html(data.Title);
+    }
+  }
+});
+```
+
 ###$.get()
 
-This function is essentially a shorthand for the following:
+Because all of jQuery's AJAX methods are based on `$.ajax()`, this function is essentially a shorthand for the following:
 
 ```js
 $.ajax({
@@ -80,7 +103,7 @@ $.ajax({
 });
 ```
 
-Here's an example of how we might use this function to search the OmDbAPI for all movies containing the word "Stargate":
+Here's an example of how we might use this function to search the OMDb API for all movies containing the word "Stargate":
 
 ```js
 // Set the URL to use for the search
@@ -104,21 +127,22 @@ Note that while you can get away with only passing the `data` parameter to the c
       + Note that `$.get()` and the other AJAX functions in jQuery also return the jqXHR object, so if you write `var res = $.get(...)` then `res` will be a reference to the jqXHR object.
       + You can try this in the Chrome REPL and then type `res` if you'd like to take a look at what's inside this object.
 
-There's another way to setup your callbacks using method chaining. The chained methods below represent methods that are part of jQuery's `Deferred` object. These methods are called [__promises__](http://api.jquery.com/category/deferred-object/).
+####Using Promises in Place of Callbacks
+There's another way to setup your callbacks by chaining methods called [__promises__](http://api.jquery.com/category/deferred-object/) to your AJAX requests. The methods are part of jQuery's `Deferred` object.
 
 ```js
 // Set the URL to use for the search
 var url = "http://www.omdbapi.com/?s=Stargate";
 
 // Make your request
-var taco = $.get(url)
-// Tell jQuery what to do if the request succeeds
+$.get(url)
 .done(function (data, textStatus, jqXHR) {
+    // Tell jQuery what to do if the request succeeds
     console.log(data);
     alert("The request was a success");
 })
-// And what to do if the request fails
 .fail(function (data, textStatus, jqXHR) {
+    // And what to do if the request fails
     alert("The request failed!");
 });
 ```
@@ -130,7 +154,8 @@ The `.always()` promise will be run whether the request was a success or a failu
 ```js
 $.get(url)
 .always(function (data, textStatus, jqXHR) {
-    // Note how we test the value of textStatus to determine whether the request was successful
+    // Note how we test the value of textStatus to determine 
+    // whether the request was successful
     if (textStatus === "success") {
         console.log(data);
         alert("The request was a success")
@@ -140,8 +165,8 @@ $.get(url)
 });
 ```
 
-
 The `.then()` promise will also run regardless of success or failure, but it takes two functions as parameters. The first function defines what to do in case of success, and the second defines what to do in case of failure:
+
 ```js
 $.get(url)
 .then(function(data, textStatus, jqXHR) {
@@ -153,6 +178,166 @@ $.get(url)
     alert("The request failed!");
 });
 ```
+
+### $.getJSON() ###
+
+The `$.getJSON()` function works just like the standard `$.get()` function except that the `dataType` parameter is automatically set to `"json"`.
+
+That means that `$.getJSON()` is equivalent to:
+
+```js
+$.get(url, queryData, successCallback, "json")
+```
+
+...or to:
+
+```js
+$.ajax({
+    url: url,
+    data: queryData,
+    success: successCallback,
+    dataType: "json"
+});
+```
+
+For example, if we wanted to display all the results of an OMDb API search for "Wedding" as an unordered list, this method might be a good choice, especially since it will automatically convert the JSON string sent back by the OMDb API into an object. 
+
+```js
+var url = "http://www.omdbapi.com/?s=Wedding";
+
+$.getJSON(url, function(data) {
+    var list = "<ul>";
+    // Iterate through the data object returned
+    data.Search.forEach( function(item) {
+        // Add the title of result to the list
+        list += "<li>" + item.Title + "</li>";
+    })
+    // Close the unordered list
+    list += "</ul>";
+
+    // Now we just add the newly created list to the results div
+    $("#search_results").html(list);
+});
+```
+
+### $.post() ###
+
+The `$.post()` function works the same way as the `$.get()` function, except that it uses the HTTP method "POST" when making its request.
+
+In effect, that means that `$.post()` is a shorthand for:
+```js
+$.ajax({
+  type: "POST", 
+  url: url, // The url being requested
+  data: data, // The data being sent to the server using POST
+  success: success, // The callback to run after the response is received
+  dataType: dataType // The type of data expected from the server (json, xml, etc)
+});
+```
+
+The basic format for `$.post()` is:
+```js
+$.post(url, dataToSubmit, successCallback, dataType)
+```
+Where:
+  - `url`: The URL for our request
+  - `dataToSubmit`: Any data to put in the body of our request
+  - `successCallback`: A callback to execute upon success
+  - `dataType`: The expected format of result data (json, xml, etc)
+
+From our discussions of routing, you've seen how the HTTP method affects a route. For example, even though these two routes have the same URL...
+
+```rb
+GET '/users', to => "users#show"
+
+POST '/users', to => "users#create"
+```
+
+...will call different methods in the user model (namely, 'show' or 'create')
+
+But still, what's a common use case for `$.post()`? Consider form-submission.
+
+The code below would grab everything entered into an HTML form with `id="userform"`, serialize it, and submit it to the route used as an example above. In this way, you could submit a form without having to reload a page.
+
+```js
+$.post( "/users", $( "#userform" ).serialize() );
+```
+
+Or, we could even submit data to the `POST '/users` route, and then receive JSON data back (perhaps the results of form validation):
+
+```js
+$.post( "/users", $( "#userform" ).serialize(), 
+    function(data, textStatus, jqXHR) {
+        alert("POST request successful!");
+
+        // Set the data received from the request to an
+        // element on the page with id="form_errors"
+        $( "#form_errors" ).html( data );
+    });
+```
+
+## Some Other Topics ##
+
+### More About Promises
+
+Suppose we want to create a function (or method) to help us query the OMDb API. We can do this using Promises.
+
+```js
+var movieQuery = function(query) {
+    return $.ajax({
+        url: "http://www.omdbapi.com/",
+        data: {s: query}
+    }).promise();
+};
+
+// Now we use any of the promise methods we talked about 
+// earlier to set what happens when the results are in.
+movieQuery("Titanic").done(function(result) {
+    console.log("The search was successful!")
+    console.log("The results are:");
+    console.log(JSON.parse(result));
+});
+```
+One other thing that's worth noticing. We can use the data key to pass the query terms. They don't have to be appended directly to the URL. And since we know the response will be in a JSON format, we could have also written this as follows:
+
+```js
+var movieQuery = function(query) {
+    return $.getJSON("http://www.omdbapi.com/", {s: query}).promise();
+}
+
+// And then we can still use our new function as follows:
+movieQuery("Wedding Singer").then(function(results) {
+    console.log("The results were:", results);
+});
+```
+
+#### Using jqXHR Objects with Promises ####
+
+One other cool thing about jqXHR objects returned by all of the jQuery AJAX methods is that new promises can be bound to them at any time. That means we could do the following:
+
+```js
+var $taco = $.getJSON("http://www.omdbapi.com/?s=Titanic", function(result) {
+    // We can define this success callback in the initial call to $.getJSON()
+    console.log("The query was successful:", result);
+});
+
+// And yet we can still apply a new promise later on that will run right away
+// if the XHR request is complete, and wait to run if the XHR request is still
+// in progress.
+$taco.done(function(result) {
+    console.log("The query results, again:", result);
+});
+
+```
+
+Remember, the `$` prepended to the variable name `$taco` is just to help us remember that we are dealing with a jQuery object. It does not affect the nature of the variable in any way.
+
+### Same-Origin-Policy and JSONP
+
+One of the most important security measures is what's called the Same-Origin Policy which only permits scripts running on pages originating from the same site – a combination of scheme, hostname, and port number[1] – to access each other's DOM with no specific restrictions, but prevents access to DOM on different sites. When you request JSON or other data from other sites using JavaScript, you may encounter this error which can be solved multiple ways, we will show you JSONP. JSONP allows you to make a request from one site for JSON data from another site.
+
+More reading here: [Same-Origin Policy](http://en.wikipedia.org/wiki/Same-origin_policy)
+
 
 
 
