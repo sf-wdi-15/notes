@@ -50,11 +50,11 @@ $(function () {
 
     // here we are grabbing the text from the
     //  todo_content input
-    var todoContent = $("#todo_content").val(); 
+    var content = $("#todo_content").val(); 
 
     $.post("/todos.json", {
       todo:  {
-        content: todoContent// where is the data????
+        content: content// where is the data????
       }
     })
     // receive the createdTodo 
