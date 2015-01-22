@@ -220,7 +220,7 @@ $(function () {
     event.preventDefault();
     console.log("Form submitted", $(this).serialize());
 
-    var content = $("#todo_conent").val();
+    var content = $("#todo_content").val();
     $.post("/todos.json", {
       todo: {
         content: content
@@ -267,7 +267,7 @@ $todoForm.on("submit", function (event) {
   event.preventDefault();
   console.log("Form submitted", $(this).serialize());
 
-  var content = $("#todo_conent").val();
+  var content = $("#todo_content").val();
   $.post("/todos", {
     todo: {
       content: content
@@ -326,7 +326,7 @@ $(function () {
     event.preventDefault();
     console.log("Form submitted", $(this).serialize());
 
-    var content = $("#todo_conent").val();
+    var content = $("#todo_content").val();
     $.post("/todos", {
       todo: {
         content: content
@@ -438,7 +438,7 @@ $(function () {
     event.preventDefault();
     console.log("Form submitted", $(this).serialize());
 
-    var content = $("#todo_conent").val();
+    var content = $("#todo_content").val();
     $.post("/todos", {
       todo: {
         content: content
@@ -555,7 +555,7 @@ $(function () {
     event.preventDefault();
     console.log("Form submitted", $(this).serialize());
 
-    var content = $("#todo_conent").val();
+    var content = $("#todo_content").val();
     $.post("/todos", {
       todo: {
         content: content
