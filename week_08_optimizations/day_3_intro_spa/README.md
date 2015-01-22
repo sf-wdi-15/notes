@@ -95,8 +95,23 @@ $(function () {
 
 Let's modify our `todos/index.html.erb` to have a form for a `todo`.
 
+Make a note here to add the `@todo` to our `index` method
+
 ```
-<%= form_for :todo  do |f| %>
+  def index
+    @todos = Todo.all
+    @todo = Todo.new
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @todos }
+    end
+  end
+```
+
+
+```
+<%= form_for @todo  do |f| %>
   <%= f.text_field :content, placeholder: :content %>
   <%= f.submit %>
 <% end %>
