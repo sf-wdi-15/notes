@@ -1,7 +1,8 @@
 class TodosController < ApplicationController
   def index
     @todos = Todo.all
-
+    @todo = Todo.new
+    
     respond_to do |format|
       format.html
       format.json { render json: @todos }
