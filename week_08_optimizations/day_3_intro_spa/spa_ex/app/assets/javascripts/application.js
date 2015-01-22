@@ -18,7 +18,7 @@
 
 // wait for the window to load
 $(function () {
-  
+
   // grab the is element
   var $todosCon = $("#todos-con");
 
@@ -31,7 +31,9 @@ $(function () {
       // looping through each todo
       todos.forEach(function (todo) {
         // append each todo.content
-        $todosCon.append("<div>" + todo.content + "</div>")
+        $todosCon.append("<div>" + 
+                          todo.content + 
+                          "<button class=\"delete\">Delete</button></div>")
       });
     });
 
@@ -43,7 +45,7 @@ $(function () {
     // prevent the page reload!
     event.preventDefault();
     // console.log the form
-    console.log($(this).serialize());
+    console.log(this);
 
     // view the page source for the form
     //  you can see that the input for 
@@ -64,6 +66,11 @@ $(function () {
       console.log("CREATED:", createdTodo);
 
       // append the createdTodo
+      //  to the todosCon
+      $todosCon.append("<div>" + 
+                        createdTodo.content + 
+                        "<button class=\"delete\">Delete</button></div>")
+
     });
 
   });

@@ -10,6 +10,8 @@ class TodosController < ApplicationController
   end
 
   def create
+    # we don't permit the :completed because
+    #   new todos should not be :completed
     @todo = Todo.create(params.require(:todo).permit(:content))
 
     respond_to do |format|
