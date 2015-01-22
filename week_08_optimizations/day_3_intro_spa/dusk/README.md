@@ -1,6 +1,24 @@
 # Templating with underscore
 (it's kind of exactly like ejs)
 
+### Setup: Adding Underscore
+
+```
+
+ curl https://jashkenas.github.io/underscore/underscore-min.js > vendor/assets/javascripts/underscore.js
+
+```
+
+and add the following to `app/assets/javascripts/application.js`
+
+```
+...
+//= require underscore.js
+...
+
+```
+
+
 ##Building a render function to use on the front end
 Today we're going to build a `render` function that acts like the one that we've used in both rails and express. To do this we're going to need a templating library.
 
