@@ -18,6 +18,7 @@
 
 // wait for the window to load
 $(function () {
+  
   // grab the is element
   var $todosCon = $("#todos-con");
 
@@ -64,7 +65,6 @@ $(function () {
 
       // append the createdTodo
     });
-
 
   });
 

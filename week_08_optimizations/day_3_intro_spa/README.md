@@ -109,20 +109,24 @@ Make a note here to add the `@todo` to our `index` method
   end
 ```
 
+and also do the following:
+
 
 ```
-<%= form_for @todo  do |f| %>
-  <%= f.text_field :content, placeholder: :content %>
-  <%= f.submit %>
-<% end %>
+	
+	<%= form_for @todo  do |f| %>
+	  <%= f.text_field :content, placeholder: :content %>
+	  <%= f.submit %>
+	<% end %>
+	
+	<div id="todos-con">
+	</div>
 
-<div id="todos-con">
-</div>
 
 ```
 
 Note that if you view page on the `localhost:3000` you should see that the form has `new_todo` as an id.
-
+Editing
 
 Let's wait for the submit event from the form. Then we should `preventDefault()` on the form.
 
@@ -170,7 +174,7 @@ $(function () {
 ```
 
 
-Now that our form is submitted, we can add the in the logic to `post` the data ot our backend and render it to the page.
+Now that our form is submitted, we can add the in the logic to `post` the data to our backend and render it to the page.
 
 
 
@@ -619,7 +623,7 @@ Let's try to edit a `todo`. Let's first make a `form` that we can append to the 
 $(function () {
 
   // we define this variable at
-  //  the top of our onload function
+  //  the top of our on-load function
   
   var $editForm = $("<form>" +
                     "<input type=\"text\" id="edit_todo_content"> +
@@ -654,13 +658,13 @@ Now let's listen for a `click` on the `edit` button.
 
 $todosCon.on("click", ".edit", function () {
   var $todo = $(this).closest(".todo")
-  alert("Editting");
+  alert("Editing");
 });
 
 ```
 
 
-However, we are going to need to want to hide our `$todo` content when we are editting so we should update our `append` to do this easily.
+However, we are going to need to want to hide our `$todo` content when we are editing so we should update our `append` to do this easily.
 
 
 ```
@@ -685,7 +689,7 @@ Now we can hide the `$todo` when `edit` is clicked.
 $todosCon.on("click", ".edit", function () {
 
   var $todo = $(this).closest(".todo");
-  alert("Editting");
+  alert("Editing");
 
   var $todoInfo = $todo.find(".todo-info");
   $todoInfo.toggle();
@@ -702,7 +706,7 @@ That's helpful so someone can't click edit on elements twice. Now let's add the 
 $todosCon.on("click", ".edit", function () {
 
   var $todo = $(this).closest(".todo");
-  alert("Editting");
+  alert("Editing");
 
   var $todoInfo = $todo.find(".todo-info");
   $todoInfo.toggle();
@@ -729,7 +733,7 @@ Let's change that.
 $todosCon.on("click", ".edit", function () {
 
   var $todo = $(this).closest(".todo");
-  alert("Editting");
+  alert("Editing");
 
   var $todoInfo = $todo.find(".todo-info");
   $todoInfo.toggle();
