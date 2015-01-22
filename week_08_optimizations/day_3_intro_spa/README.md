@@ -265,6 +265,7 @@ In order to setup a delete we need to add `delete` buttons to all our elements, 
 
 Let's update our `append` to have a button.
 
+
 ```
 
 $todoForm.on("submit", function (event) { 
@@ -272,7 +273,7 @@ $todoForm.on("submit", function (event) {
   console.log("Form submitted", $(this).serialize());
 
   var content = $("#todo_content").val();
-  $.post("/todos", {
+  $.post("/todos.json", {
     todo: {
       content: content
     }
@@ -285,6 +286,26 @@ $todoForm.on("submit", function (event) {
 
 
 ```
+
+**NOTE**: this only updated the `append` for the `formSubmit`, so unless you want only new todos to have a delete button, we should update all the `append` methods.
+
+
+```
+  $todosCon.append("<div>" + 
+                    createdTodo.content + 
+                    "<button class=\"delete\">Delete</button></div>")
+```
+
+Be sure to update the `append` in `$.get("/todos.json")`
+
+
+```
+  $todosCon.append("<div>" + 
+                    todo.content + 
+                    "<button class=\"delete\">Delete</button></div>")
+```
+
+
 
 Let't also listen for `click`'s on any of those `delete` buttons.
 
@@ -320,7 +341,9 @@ $(function () {
 
       // append each todo
       todos.forEach(function (todo) {
-        $todosCon.append("<div>" +  todo.content + "</div>");
+        $todosCon.append("<div>" + 
+                        todo.content + 
+                        "<button class=\"delete\">Delete</button></div>");
       });
 
   });
@@ -363,7 +386,7 @@ Next we need to send an actual `DELETE` request to the server, which might look 
 ```
 
     $.ajax({
-      url: "/todos/:some_id",
+      url: "/todos/:some_id.json",
       type: "DELETE"
     }).done(function () {
       alert("DELETED!")
@@ -381,6 +404,16 @@ However, how are we going to get the `id` of the object that we want to delete f
                     "<button class=\"delete\">Delete</button></div>");
 
 ```
+
+**NOTE**: this only updated the `append` for the `formSubmit`, so also update the `$.get` as well.
+
+```
+    $todosCon.append("<div class=\"todo\" data-id=" + todo.id + ">" + 
+                    todo.content + 
+                    "<button class=\"delete\">Delete</button></div>");
+
+```
+
 
 
 Now we can grab that from our view. Only there's one problem. When someone clicks the `delete` button that's all we have access to, but we want to find containing `div`'s `data-id` attribute. In jQuery we can use `.closest` to find that parent `div`.
@@ -400,7 +433,7 @@ Now we can grab that from our view. Only there's one problem. When someone click
     // send our delete request
     $.ajax({
       // grab the data-id attribute
-      url: "/todos/" + $todo.data("id"),
+      url: "/todos/" + $todo.data("id") + ".json",
       type: "DELETE"
     }).done(function (){
       // once we completed the delete
@@ -432,7 +465,9 @@ $(function () {
 
       // append each todo
       todos.forEach(function (todo) {
-        $todosCon.append("<div>" +  todo.content + "</div>");
+        $todosCon.append("<div class=\"todo\" data-id=" + todo.id + ">" + 
+                      todo.content + 
+                      "<button class=\"delete\">Delete</button></div>");
       });
 
   });
@@ -443,7 +478,7 @@ $(function () {
     console.log("Form submitted", $(this).serialize());
 
     var content = $("#todo_content").val();
-    $.post("/todos", {
+    $.post("/todos.json", {
       todo: {
         content: content
       }
@@ -467,7 +502,7 @@ $(function () {
     // send our delete request
     $.ajax({
       // grab the data-id attribute
-      url: "/todos/" + $todo.data("id"),
+      url: "/todos/" + $todo.data("id") + ".json",
       type: "DELETE"
     }).done(function (){
       // once we completed the delete
@@ -489,11 +524,20 @@ One of the simplest updates we can do is to add a completed `checkbox`. Let's up
 ```
   $todosCon.append("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
                   createdTodo.content + 
-                  "<input type=\"checkbox\" class=\"completed\"> +
+                  "<input type=\"checkbox\" class=\"completed\">" +
                   "<button class=\"delete\">Delete</button></div>");
 
 ```
 
+**NOTE**: this only updated the `append` for the `formSubmit`, so also update the `$.get` as well.
+
+```
+  $todosCon.append("<div class=\"todo\" data-id=" + todo.id + ">" + 
+                  todo.content + 
+                  "<input type=\"checkbox\" class=\"completed\">" +
+                  "<button class=\"delete\">Delete</button></div>");
+
+```
 
 Now let's update our code to add a listener to handle when `completed` is clicked.
 
@@ -503,7 +547,7 @@ $todosCon.on("click", ".completed", function () {
   var $todo = $(this).closest(".todo");
 
   $.ajax({
-    url: "/todos/" + $todo.data("id"),
+    url: "/todos/" + $todo.data("id") + ".json",
     type: "PATCH",
     data: {
       todo: {
@@ -549,7 +593,10 @@ $(function () {
 
       // append each todo
       todos.forEach(function (todo) {
-        $todosCon.append("<div>" +  todo.content + "</div>");
+        $todosCon.append("<div class=\"todo\" data-id=" + todo.id + ">" + 
+                        todo.content + 
+                        "<input type=\"checkbox\" class=\"completed\">" +
+                        "<button class=\"delete\">Delete</button></div>");
       });
 
   });
@@ -560,13 +607,14 @@ $(function () {
     console.log("Form submitted", $(this).serialize());
 
     var content = $("#todo_content").val();
-    $.post("/todos", {
+    $.post("/todos.json", {
       todo: {
         content: content
       }
     }).done(function (createdTodo) {
       $todosCon.append("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
                       createdTodo.content + 
+                      "<input type=\"checkbox\" class=\"completed\">" +
                       "<button class=\"delete\">Delete</button></div>");
     });
   });
@@ -584,7 +632,7 @@ $(function () {
     // send our delete request
     $.ajax({
       // grab the data-id attribute
-      url: "/todos/" + $todo.data("id"),
+      url: "/todos/" + $todo.data("id") + ".json",
       type: "DELETE"
     }).done(function (){
       // once we completed the delete
@@ -597,7 +645,7 @@ $(function () {
     var $todo = $(this).closest(".todo");
 
     $.ajax({
-      url: "/todos/" + $todo.data("id"),
+      url: "/todos/" + $todo.data("id") + ".json",
       type: "PATCH",
       data: {
         todo: {
@@ -614,161 +662,175 @@ $(function () {
 
 ```
 
+### A Better Checkbox
 
-Let's try to edit a `todo`. Let's first make a `form` that we can append to the page.
-
-
-```
-
-$(function () {
-
-  // we define this variable at
-  //  the top of our on-load function
-  
-  var $editForm = $("<form>" +
-                    "<input type=\"text\" id="edit_todo_content"> +
-                    "<button>Update</button>" +
-                  "</form>");
-
-  ...
-
-})
-
-```
+Theres' only one problem with our checkboxes right now, and it's that they use the `todo.completed` to display a check or no check. They are updating the server.
 
 
-Let's update our `append` function from earlier to have an `edit` button.
+If we separate out the `append` text for our todo so that we can add some styling and manipulate them then it should make our rendering lives easier. This will also make our code more readable.
 
 
 ```
-$todosCon.append("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
-                createdTodo.content + 
-                "<button class=\"edit\">Edit</button>" + 
-                "<button class=\"delete\">Delete</button></div>");
-
-```
-
-
-
-Now let's listen for a `click` on the `edit` button.
-
-
-
-```
-
-$todosCon.on("click", ".edit", function () {
-  var $todo = $(this).closest(".todo")
-  alert("Editing");
-});
-
-```
-
-
-However, we are going to need to want to hide our `$todo` content when we are editing so we should update our `append` to do this easily.
-
-
-```
-$todosCon.append("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
-                  "<div class=\"todo-info\">" +
-                    "</div class="\todo-content\">" +
+  var $todo = $("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
                       createdTodo.content + 
-                    "</div>" +
-                    "<button class=\"edit\">Edit</button>" + 
-                    "<button class=\"delete\">Delete</button>"  +
-                  "</div>" +
-                "</div>");
+                      "<input type=\"checkbox\" class=\"completed\">" +
+                      "<button class=\"delete\">Delete</button></div>");
+
+
+  $todosCon.append($todo);             
+```
+
+**NOTE**: this only updated the `append` for the `formSubmit`, so also update the `$.get` as well.
+
+
+```
+  var $todo = $("<div class=\"todo\" data-id=" + todo.id + ">" + 
+                      todo.content + 
+                      "<input type=\"checkbox\" class=\"completed\">" +
+                      "<button class=\"delete\">Delete</button></div>");
+
+
+  $todosCon.append($todo);             
+```
+
+
+Now we can use the `$todo` to update the `checkbox` before we append it to the page.
+
+```
+  var $todo = $("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
+                      createdTodo.content + 
+                      "<input type=\"checkbox\" class=\"completed\">" +
+                      "<button class=\"delete\">Delete</button></div>");
+
+  $todo.find(".completed").attr("checked", createdTodo.completed)
+  $todosCon.append($todo);             
+```
+
+**NOTE**: this only updated the `append` for the `formSubmit`, so also update the `$.get` as well.
+
+
+```
+  var $todo = $("<div class=\"todo\" data-id=" + todo.id + ">" + 
+                      todo.content + 
+                      "<input type=\"checkbox\" class=\"completed\">" +
+                      "<button class=\"delete\">Delete</button></div>");
+
+  $todo.find(".completed").attr("checked", todo.completed);
+
+  $todosCon.append($todo);             
+```
+
+The only difference here is that we need to make sure that for our `$.get` we append a `todo` with the `.todo-completed` styling.
+
+```
+  var $todo = $("<div class=\"todo\" data-id=" + todo.id + ">" + 
+                      todo.content + 
+                      "<input type=\"checkbox\" class=\"completed\">" +
+                      "<button class=\"delete\">Delete</button></div>");
+
+  $todo.find(".completed").attr("checked", todo.completed);
+
+  if (todo.completed) {
+    $todo.toggleClass(".todo-completed")
+  }
+
+  $todosCon.append($todo);             
+```
+
+
+All together we now have
+
 
 ```
 
 
-Now we can hide the `$todo` when `edit` is clicked.
+// wait for window load
+$(function () {
+  
+  // grab the `todos-con`
+  var $todosCon = $("#todos-con");
+  
+  $.get("/todos.json")
+    .done(function (todos) {
+      console.log("All Todos:", todos);
 
-
-```
-
-$todosCon.on("click", ".edit", function () {
-
-  var $todo = $(this).closest(".todo");
-  alert("Editing");
-
-  var $todoInfo = $todo.find(".todo-info");
-  $todoInfo.toggle();
-
-});
-
-```
-
-That's helpful so someone can't click edit on elements twice. Now let's add the $editForm
-
-
-```
-
-$todosCon.on("click", ".edit", function () {
-
-  var $todo = $(this).closest(".todo");
-  alert("Editing");
-
-  var $todoInfo = $todo.find(".todo-info");
-  $todoInfo.toggle();
-
-  $todo.append($editForm);
-
-});
-
-```
-
-
-Note how now the edit form shows up, but what happens if someone submits it?
-
-*NOTHING!*
-
-
-Let's change that.
-
-
-
-
-```
-
-$todosCon.on("click", ".edit", function () {
-
-  var $todo = $(this).closest(".todo");
-  alert("Editing");
-
-  var $todoInfo = $todo.find(".todo-info");
-  $todoInfo.toggle();
-  var todoContent = $todo.find(".todo-content").val();
-
-  $editForm.attr("action", "/todos/"+ $todo.data("id"))
-  $editForm.find("#edit_todo_content").val(todoContent);
-
-  $todo.append($editForm);
-
-
-
-});
-
-```
-
-However, when we submit the form it needs a handler `preventDefualt` and send an `ajax` request.
-
-
-```
-
-  $editForm.on("submit", function (event) {
-    event.preventDefault();
-
-    $.ajax({
-        url: $editForm.attr("action"),
-        method: "PATCH"
-      }).done(function (data) {
-          // we need to redisplay
-          // the todo... hmmm?
+      // append each todo
+      todos.forEach(function (todo) {
+        $todosCon.append("<div class=\"todo\" data-id=" + todo.id + ">" + 
+                        todo.content + 
+                        "<input type=\"checkbox\" class=\"completed\">" +
+                        "<button class=\"delete\">Delete</button></div>");
       });
+
   });
 
+  var $todoForm = $("#new_todo")
+  $todoForm.on("submit", function (event) { 
+    event.preventDefault();
+    console.log("Form submitted", $(this).serialize());
+
+    var content = $("#todo_content").val();
+    $.post("/todos.json", {
+      todo: {
+        content: content
+      }
+    }).done(function (createdTodo) {
+      var $todo = $("<div class=\"todo\" data-id=" + todo.id + ">" + 
+                    todo.content + 
+                    "<input type=\"checkbox\" class=\"completed\">" +
+                    "<button class=\"delete\">Delete</button></div>");
+
+      $todo.find(".completed").attr("checked", todo.completed);
+
+      if (todo.completed) {
+        $todo.toggleClass(".todo-completed")
+      }
+      
+      $todosCon.append($todo);  
+    });
+  });
+
+  // setup a click handler that only
+  //  handle clicks from an element
+  //  with the `.delete` className
+  //  that is inside the $todosCon
+  $todosCon.on("click", ".delete", function (event) {
+    alert("I was clicked!");
+
+    // grab the entire todo
+    var $todo = $(this).closest(".todo");
+
+    // send our delete request
+    $.ajax({
+      // grab the data-id attribute
+      url: "/todos/" + $todo.data("id") + ".json",
+      type: "DELETE"
+    }).done(function (){
+      // once we completed the delete
+      $todo.remove();
+    })
+  });
+
+  $todosCon.on("click", ".completed", function () {
+
+    var $todo = $(this).closest(".todo");
+
+    $.ajax({
+      url: "/todos/" + $todo.data("id") + ".json",
+      type: "PATCH",
+      data: {
+        todo: {
+          completed: this.checked
+        }
+      }
+    }).done(function (data) {
+      // update the styling of our todo
+      $todo.toggleClass(".todo-complete")
+    })
+  });
+
+});
+
 ```
 
-### On The Backend 
-
-We should add a standard `todos#update` method to our controller.
+## `.done(function (lesson) { lesson.end() })`
