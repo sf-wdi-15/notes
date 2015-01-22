@@ -514,6 +514,37 @@ $(function () {
 
 ```
 
+This assumes on the backend we have an `destroy` method
+
+```
+  def destroy
+    # find the `todo`
+    # delete the `todo`
+  end
+
+```
+
+* To **find** the todo we just say `Todo.find(params[:id])`
+* To **delete** a todo we just say `todo.destroy()`
+
+
+```
+
+  def destroy
+    # find the `todo`
+    todo = Todo.find(params[:id])
+    # delete the `todo`
+    todo.destroy()
+
+    respond_to do |format|
+      format.html { redirect_to todos_path }
+      format.json { render json: nil, status: 200 }
+    end
+  end
+
+```
+
+
 ## Updates and Editing
 
 

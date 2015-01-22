@@ -75,6 +75,14 @@ $(function () {
 
   });
 
+  // setup a click handler that only
+  //  handle clicks from an element
+  //  with the `.delete` className
+  //  that is inside the $todosCon
+  $todosCon.on("click", ".delete", function (event) {
+    alert("I was clicked!");
+  });
+
 });
 
 
