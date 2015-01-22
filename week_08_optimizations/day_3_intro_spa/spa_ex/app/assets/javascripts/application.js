@@ -34,6 +34,38 @@ $(function () {
       });
     });
 
+  var $todoForm = $("#new_todo");
 
+  // we are waiting for a submit 
+  //  on the #new_todo form
+  $todoForm.on("submit", function (event) {
+    // prevent the page reload!
+    event.preventDefault();
+    // console.log the form
+    console.log($(this).serialize());
+
+    // view the page source for the form
+    //  you can see that the input for 
+    //  content has id of "todo_content"
+
+    // here we are grabbing the text from the
+    //  todo_content input
+    var todoContent = $("#todo_content").val(); 
+
+    $.post("/todos.json", {
+      todo:  {
+        content: todoContent// where is the data????
+      }
+    })
+    // receive the createdTodo 
+    .done(function (createdTodo) {
+      // console.log the createdTodo
+      console.log("CREATED:", createdTodo);
+
+      // append the createdTodo
+    });
+
+
+  });
 
 });
