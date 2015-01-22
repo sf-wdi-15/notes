@@ -29,7 +29,7 @@ Now we need to setup our `todos#index` method to serve both `html` and `json` fo
 
 ```
   def index
-    @todos = Todos.all
+    @todos = Todo.all
 
     respond_to do |format|
       format.html
@@ -274,7 +274,7 @@ $todoForm.on("submit", function (event) {
     }
   }).done(function (createdTodo) {
     $todosCon.append("<div>" + 
-                    createdTodo.cotent + 
+                    createdTodo.content + 
                     "<button class=\"delete\">Delete</button></div>")
   });
 });
@@ -333,7 +333,7 @@ $(function () {
       }
     }).done(function (createdTodo) {
       $todosCon.append("<div>" + 
-                      createdTodo.cotent + 
+                      createdTodo.content + 
                       "<button class=\"delete\">Delete</button></div>")
     });
   });
@@ -373,7 +373,7 @@ However, how are we going to get the `id` of the object that we want to delete f
 
 ```
     $todosCon.append("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
-                    createdTodo.cotent + 
+                    createdTodo.content + 
                     "<button class=\"delete\">Delete</button></div>");
 
 ```
@@ -445,7 +445,7 @@ $(function () {
       }
     }).done(function (createdTodo) {
       $todosCon.append("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
-                      createdTodo.cotent + 
+                      createdTodo.content + 
                       "<button class=\"delete\">Delete</button></div>");
     });
   });
@@ -484,7 +484,7 @@ One of the simplest updates we can do is to add a completed `checkbox`. Let's up
 
 ```
   $todosCon.append("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
-                  createdTodo.cotent + 
+                  createdTodo.content + 
                   "<input type=\"checkbox\" class=\"completed\"> +
                   "<button class=\"delete\">Delete</button></div>");
 
@@ -562,7 +562,7 @@ $(function () {
       }
     }).done(function (createdTodo) {
       $todosCon.append("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
-                      createdTodo.cotent + 
+                      createdTodo.content + 
                       "<button class=\"delete\">Delete</button></div>");
     });
   });
@@ -638,7 +638,7 @@ Let's update our `append` function from earlier to have an `edit` button.
 
 ```
 $todosCon.append("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
-                createdTodo.cotent + 
+                createdTodo.content + 
                 "<button class=\"edit\">Edit</button>" + 
                 "<button class=\"delete\">Delete</button></div>");
 
@@ -667,7 +667,7 @@ However, we are going to need to want to hide our `$todo` content when we are ed
 $todosCon.append("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
                   "<div class=\"todo-info\">" +
                     "</div class="\todo-content\">" +
-                      createdTodo.cotent + 
+                      createdTodo.content + 
                     "</div>" +
                     "<button class=\"edit\">Edit</button>" + 
                     "<button class=\"delete\">Delete</button>"  +
