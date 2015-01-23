@@ -31,9 +31,20 @@ $(function () {
       // looping through each todo
       todos.forEach(function (todo) {
         // append each todo.content
-        $todosCon.append("<div>" + 
-                          todo.content + 
-                          "<button class=\"delete\">Delete</button></div>")
+        var $todo = $("<div class=\"todo\" data-id=" + todo.id + ">" + 
+                            todo.content + 
+                            "<input type=\"checkbox\" class=\"completed\">" +
+                            "<button class=\"delete\">Delete</button></div>");
+
+        $todo.find(".completed").attr("checked", todo.completed);
+
+        if (todo.completed) {
+          $todo.toggleClass("todo-complete")
+        }
+
+
+        $todosCon.append($todo); 
+
       });
     });
 
@@ -65,11 +76,13 @@ $(function () {
       // console.log the createdTodo
       console.log("CREATED:", createdTodo);
 
-      // append the createdTodo
-      //  to the todosCon
-      $todosCon.append("<div>" + 
-                        createdTodo.content + 
-                        "<button class=\"delete\">Delete</button></div>")
+      var $todo = $("<div class=\"todo\" data-id=" + createdTodo.id + ">" + 
+                          createdTodo.content + 
+                          "<input type=\"checkbox\" class=\"completed\">" +
+                          "<button class=\"delete\">Delete</button></div>");
+
+      $todo.find(".completed").attr("checked", createdTodo.completed)
+      $todosCon.append($todo);   
 
     });
 
@@ -81,6 +94,44 @@ $(function () {
   //  that is inside the $todosCon
   $todosCon.on("click", ".delete", function (event) {
     alert("I was clicked!");
+
+    // grab the entire todo
+    var $todo = $(this).closest(".todo");
+
+    // send our delete request
+    $.ajax({
+      // grab the data-id attribute
+      url: "/todos/" + $todo.data("id") + ".json",
+      type: "DELETE"
+    }).done(function (){
+      // once we completed the delete
+      $todo.remove();
+    })
+  });
+
+
+  // we waiting for  a click on a checkbox
+  $todosCon.on("click", ".completed", function () {
+    // grab the todo 
+    var $todo = $(this).closest(".todo");
+
+    // send the update on the completed field
+    $.ajax({
+      // use the data-id to make the URL
+      url: "/todos/" + $todo.data("id") + ".json",
+      type: "PATCH",
+      data: {
+        todo: {
+          completed: this.checked
+        }
+      }
+    }).done(function (data) {
+      // console.log the data
+      console.log("UPDATED: ", data);
+      // update the styling of our todo
+      console.log($todo)
+      $todo.toggleClass("todo-complete");
+    })
   });
 
 });
