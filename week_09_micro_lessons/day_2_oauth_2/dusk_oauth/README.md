@@ -1,7 +1,6 @@
-# Lovely-Filter
-Instagram Reimagined
+# OAuth 2 API
 
-Here is the start our group project
+Before anything you should sign up for the `instagram` api.
 
 ## Getting Started With `Instagram` Gem
 
