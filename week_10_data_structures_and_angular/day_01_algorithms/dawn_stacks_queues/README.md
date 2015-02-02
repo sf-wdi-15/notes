@@ -61,28 +61,31 @@ Second, you will get these sorts of questions in interviews.
    * Get the first value of a list
    * Random sample from a list
    
-* O(log n) - Divide and Conquer searches
+* O(log n) - Logarithmic Time (ex: Divide and Conquer searches)
    * Typical of algorithms that divide the input, then look at one of the sections
    * Searching sorted data
 
-* O(n) - Examples:
+* O(n) - Linear Time, Examples:
    * Sum an array
    * Find the max of an unsorted array
    * Traversal of a list (a linked list or an array) with n elements;
 
-* O(n log n) - Divide and pick a section for every piece of input
-   * Sorting with quicksort, merge sort, or another  reasonably fast sort.
+* O(n log n) - Log-Linear Time (AKA "quasilinear")
+  * Divide and pick a section for every piece of input
+  * Sorting with quicksort, merge sort, or another  reasonably fast sort.
 
-* O(n^2) - Examples:
+* O(n^2) - Quadratic Time, Examples:
 	* Finding duplicates in an unsorted list of n elements 	(implemented with two nested loops).
-   * Insertion Sort
-   * Selection Sort
-   * Bubble Sort
+  * Insertion Sort
+  * Selection Sort
+  * Bubble Sort
    
-* O(2^n) - One new piece of data doubles the work is 2^n.
-  * Naive Fibonacci
+* O(2^n) - Exponential Time
+  * When one new piece of data doubles the work, the formula is 2^n.
+  * Naive Fibonacci (without pruning —— AKA, dynamic programming)
 
-* O(n!) - List all combinations of a set, every possible subset.  Impossibly slow and hardly ever needed.
+* O(n!) - Factorial Time
+  * List all combinations of a set, every possible subset.  Impossibly slow and hardly ever needed.
   * Naive traveling salesman
 
 ## Data Structures
