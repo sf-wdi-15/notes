@@ -8,6 +8,9 @@ class Stack
 	def push(value)
 		@top = @top + 1
 		@stack.push(value)
+
+		# @stack[@top] = value
+
 	end
 
 	def pop
