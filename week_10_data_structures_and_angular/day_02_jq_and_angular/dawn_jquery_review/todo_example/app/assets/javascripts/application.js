@@ -42,7 +42,7 @@ var itemsTemplate = _.template(itemsDiv);
 var todosList = "<ul style='color:blue;'>" +
                  "<% todos.forEach(function(todo) { %>" +
                    "<li><%= todo['content'] %>" +
-                    "<input class='checkbox-<%= todo['id'] %>' type='checkbox'" +
+                    "<input class='checkbox' id=<%= todo['id'] %> type='checkbox'" +
                       "<%= todo['complete'] ? 'checked' : ' ' %>" + 
                     "/></li>" +
                  "<% }); %>" +
@@ -68,5 +68,16 @@ var render = function(path,obj){
 $.get("/todos.json", function(data) {
   console.log(data);
   render("/todos", {todos: data})
-})
+  $(".checkbox").click(function(e) {
+    var el = e.toElement;
+    var url = "/todos/" + el.id + ".json";
+    var obj = { type: "PATCH", url: url, data: {todo: {complete: el.checked}} };
+    $.ajax(obj).done(function(msg) {
+      console.log("Data Saved: " + msg);
+    });
+
+  });
+    //$.post("/todos/ });
+});
+
 });
