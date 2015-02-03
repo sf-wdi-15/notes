@@ -2,3 +2,5 @@
 node_modules
 *.sublime-workspace
 *.sublime-project
+
+*week_07_more_rails/day_3_password_reset_apis/dawn_password_reset/
