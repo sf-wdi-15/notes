@@ -31,7 +31,10 @@ to get things started.
 
 now check out `http://localhost:3000/todos`. Pretty awesome right?
 
+Before we get going with the review of jQuery, make a couple todos so we have some content to play with.
+
 ##Queue in jQuery
 The objective for today is to use jQuery to make AJAX requests for todo's and then append those todo's onto the page.
 
 So what needs to happen? How do we break this problem into chunks?
+
