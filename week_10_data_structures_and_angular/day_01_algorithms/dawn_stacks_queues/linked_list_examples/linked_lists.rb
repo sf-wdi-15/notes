@@ -1,5 +1,136 @@
 require_relative "node"
 
+class LinkedList
+	attr_reader :head, :size
+
+	def initialize
+		@head = nil
+		@size = 0
+	end
+
+	def push(value)
+		node = Node.new(value)
+
+		if @size == 0
+			@head = node
+			@size = 1
+			return self
+		end
+
+		# Now add the new node to the list
+		# Set current to the head of the list
+		current = @head
+
+		# Find the last node
+		while current.next
+			current = current.next
+		end
+
+		# Increment the size of the list and add the node
+		current.next = node
+		@size += 1
+
+		# Return list
+		self
+	end
+
+	def pop
+		if @size == 0
+			raise "Cannot pop an empty list."
+		end
+
+		popped = @head
+		while popped.next
+			previous = popped
+			popped = popped.next
+		end
+
+		# Do the work
+		previous.next = nil
+		@size -= 1
+
+		# Return value of last node
+		popped.value
+	end
+
+	def unshift(value)
+		node = Node.new(value)
+
+		if @size == 0
+			@head = node
+			@size = 1
+			return self
+		end
+
+		# Now add the new node to front of list
+		node.next = @head
+		@head = node
+		@size += 1
+
+		# Return the list
+		self
+	end
+
+	def shift
+		if @size == 0
+			raise "You cannot shift an empty list."
+		end
+
+		# Do the work
+		shifted = @head
+		@head = shifted.next
+		@size -= 1
+
+		# Return the value shifted off
+		shifted.value
+	end
+
+	def get(index)
+		find(index).value
+	end
+
+	def set(index, value)
+		# Find the right node
+		node = find(index)
+
+		# Set the new value
+		node.value = value
+
+		# Return the node
+		node
+	end
+
+	def each
+		i = 0
+		current = @head
+		while i < @size
+			yield(i, current.value)
+			current = current.next
+			i += 1
+		end
+	end
+
+	def destroy!
+		initialize
+	end
+
+	private
+
+	def find(index)
+		if index > @size - 1
+			raise "Index out of bounds."
+		end
+
+		i = 0
+		current = @head
+		while i < index
+			current = current.next
+		end
+
+		current		
+	end
+end
+
 class DoublyLinkedList
 	attr_reader :head, :last, :size
 
@@ -116,12 +247,12 @@ class DoublyLinkedList
 
 	def get(index)
 		# Return the value at the requested node
-		traverse(index).value
+		find(index).value
 	end
 
 	def set(index, value)
 		# Find the right node
-		current = traverse(index)
+		current = find(index)
 
 		# Set the new value
 		current.value = value
@@ -135,6 +266,35 @@ class DoublyLinkedList
 			current = current.next
 			i += 1
 		end
+
+		# Finally return the list
+		self
+	end
+
+	def map
+		new_list = DoublyLinkedList.new
+		i = 0
+		current = @head
+		while i < @size
+			new_list.push yield(i, current.value)
+			current = current.next
+			i += 1
+		end
+
+		# Finally return the (now modified) new_list
+		new_list
+	end
+
+	def map!
+		i = 0
+		current = @head
+		while i < @size
+			current.value = yield(i, current.value)
+			current = current.next
+			i += 1
+		end
+
+		self
 	end
 
 	def destroy!
@@ -144,7 +304,7 @@ class DoublyLinkedList
 	private
 		# I've created this special traversal method that cuts retrieval time in half by searhing
 		# from the front, or back, as necessary.
-		def traverse(index)
+		def find(index)
 			# First check to make sure the index is valid
 			if index > @size - 1
 				raise "Index out of bounds."
@@ -160,7 +320,7 @@ class DoublyLinkedList
 					current = current.prev
 				end
 			else
-				# If index is in the front half of the list, traverse normally
+				# If index is in the front half of the list, find normally
 				current = @head
 				i = 0
 				while i < index

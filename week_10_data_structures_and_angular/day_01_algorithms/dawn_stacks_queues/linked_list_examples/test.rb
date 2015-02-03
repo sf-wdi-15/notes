@@ -1,10 +1,10 @@
 require 'pry'
 require 'ffaker'
-require_relative 'linked_list'
+require_relative 'linked_lists'
 
 l = DoublyLinkedList.new
 
-(100).times do |n|
+(10).times do |n|
 	l.push Random.rand(-100000..100000)
 end
 
@@ -22,7 +22,7 @@ print_odd = Proc.new do |i, v|
 	end
 end
 
-string_list = DoublyLinkedList.new
+string_list = LinkedList.new
 
 (100).times do |n|
 	string_list.push Faker::HipsterIpsum.sentence
