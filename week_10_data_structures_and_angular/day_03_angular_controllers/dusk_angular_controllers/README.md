@@ -1,5 +1,5 @@
 # Intro Angular 
-## Angular Controllers and HTTP
+## Angular \w Rails and HTTP
 
 | Objectives  |
 | :---- |
@@ -29,17 +29,22 @@
 * Large Exercise: Add A Library
 
 
-## How to include $http it in your Angular application
+## Previously In WDI
+
+[Intro Angular Controllers](angular_controllers_lab/README.md)
+
+
+## $HTTP Setup
 
 In your controller, $http will be one of the dependencies so before you include it make sure you have a controller and app set up
 
 1. Define your app and include it in your body tag
 
-  - In your app.js: `TestApp = angular.module("TestApp", []`
+  - In your app.js: `BookApp = angular.module("BookApp", [])`
 
-  - And in your application.html.erb: `<body ng-app="TestApp">`
+  - And in your application.html.erb: `<body ng-app="BookApp">`
 
-3. In your controller, specify include the $http dependency `TestApp.controller("TestCtrl", ["$scope", "$http", ($scope, $http) ->`
+3. In your controller, specify include the $http dependency `BookApp.controller("TestCtrl", ["$scope", "$http", ($scope, $http) ->`
 
 ## Ways to write $http
 
