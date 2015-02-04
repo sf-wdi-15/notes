@@ -22,8 +22,6 @@
   * `Get`  All Books
   * Handle `Create`
     * Sending the `X-CSRF-Token`
-  * Exercise
-  * Exercise
   * Setup HttpProvider
     * Brief mention about providers
 * Large Exercise: Add A Library
