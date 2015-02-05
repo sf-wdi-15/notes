@@ -17,5 +17,6 @@ We will begin by refactoring our [`rails_blog`](https://github.com/sf-wdi-15/rai
 
 ## Resources
 
+* [partials](http://guides.rubyonrails.org/layouts_and_rendering.html#using-partials)
 * [rendering_layouts](http://guides.rubyonrails.org/layouts_and_rendering.html)
 * [url_helpers](http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-link_to_if)
