@@ -17,39 +17,43 @@
 
 
 
-// Let's define our Angular App Module
-var BookApp = angular.module("BookApp", []);
+// // Let's define our Angular App Module
+// var BookApp = angular.module("BookApp", [
+//   "BookCtrls"
+// ]);
 
-// configured the http module to include
-// the X-CSRF-Token
-BookApp.config(["$httpProvider", function($httpProvider){
-  $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
-}]);
+// // configured the http module to include
+// // the X-CSRF-Token
+// BookApp.config(["$httpProvider", function($httpProvider){
+//   $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+// }]);
+
+// // Create a module to hold all of the Book Controllers
+// var BookCtrls = angular.module("BookCtrls", []);
+
+// BookCtrls.controller("BooksCtrl", ["$scope", "$http", function ($scope, $http) {
+//   $scope.greeting = "Hello World";
 
 
-BookApp.controller("BooksCtrl", ["$scope", "$http", function ($scope, $http) {
-  $scope.greeting = "Hello World";
+//   $http.get("/books.json")
+//     .success(function (data) {
+//       console.log(data);
+//       $scope.books = data;
+//     });
 
+//   $scope.books = [];
+//   // handle form submit
+//   $scope.addBook = function () {
+//     console.log($scope.newBook);
 
-  $http.get("/books.json")
-    .success(function (data) {
-      console.log(data);
-      $scope.books = data;
-    });
-
-  $scope.books = [];
-  // handle form submit
-  $scope.addBook = function () {
-    console.log($scope.newBook);
-
-    $http.post("/books.json", {book: $scope.newBook})
-      .success(function (data) {
-        console.log(data);
-        $scope.books.push(data);
-        $scope.newBook = {};
-      });
-  };
-}])
+//     $http.post("/books.json", {book: $scope.newBook})
+//       .success(function (data) {
+//         console.log(data);
+//         $scope.books.push(data);
+//         $scope.newBook = {};
+//       });
+//   };
+// }])
 
 
 
