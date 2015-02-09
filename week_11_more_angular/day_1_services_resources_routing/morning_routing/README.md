@@ -28,7 +28,7 @@ Also see [`pushState`](https://developer.mozilla.org/en-US/docs/Web/Guide/API/DO
 
 ## Pre Setup
 
-Go to angular's website and download Angular
+Start a book app 
 
 ```
 rails new book_router_app -T -d postgresql;
@@ -172,7 +172,7 @@ If we reload the `"/mean"` route we see that it breaks. Let's fix this. Add a ca
 
 ```ruby
 
-match "*", to: "books#index"
+match "*", to: "books#index" 
 
 ```
 
