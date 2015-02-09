@@ -9,6 +9,8 @@
 | utilize an angular serivces and resources to  refactor our application |
 
 
+[providers](https://docs.angularjs.org/guide/providers)
+
 When we created our applications so far we've really only seen a few different components.
 
 * Module
