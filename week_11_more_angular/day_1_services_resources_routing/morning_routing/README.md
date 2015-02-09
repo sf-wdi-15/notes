@@ -162,10 +162,44 @@ BookRouter.config(["$routeProvider", "$locationProvider", function ($routeProvid
 
 * Exercise
   * Add view for when the page goes to `"/mean"` that gets a template from `books/mean.html`. Make it mean.
-  * Add a link, `<a href="/mean"></a>`, on the application.html.erb page somewhere.
+  * Add a link, `<a href="#/mean"></a>`, on the application.html.erb page somewhere.
   * Click and verify it says what you'd expect.
 
 ### Modification Two
+
+Let's add a "hashtagless" location to our url
+
+
+
+```
+
+      $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: true
+      });
+
+```
+
+let's also add the `<base url="..">` feature so that our application router behaves properly. This is required in `angular-1.3.12`.
+
+```
+<head>
+  ...
+  <base url="/">
+</head>
+```
+
+It also suggests that all url paths are relative.
+
+```
+<a href="mean">Mean Page</a>
+```
+
+instead of
+
+```
+<a href="/mean">Mean Page</a>
+```
 
 If we reload the `"/mean"` route we see that it breaks. Let's fix this. Add a catchall route
 
