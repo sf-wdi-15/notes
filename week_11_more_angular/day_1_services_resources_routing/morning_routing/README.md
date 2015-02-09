@@ -30,7 +30,7 @@ Also see [`pushState`](https://developer.mozilla.org/en-US/docs/Web/Guide/API/DO
 
 Start a book app 
 
-```
+```bash
 rails new book_router_app -T -d postgresql;
 cd 'book_router_app/';
 rails g model book title:string description:text;
@@ -41,7 +41,7 @@ rails g controller books index;
 
 and paste the following to download angular
 
-```
+```bash
 if [ -d 'vendor/assets/javascripts' ]
   then
     curl 'https://code.angularjs.org/1.3.12/angular-1.3.12.zip' > 'angular.zip'  && unzip 'angular.zip';
