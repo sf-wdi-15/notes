@@ -1,0 +1,5 @@
+<div ng-repeat="book in books track by $index">
+  {{book}} 
+  <button ng-click="books.splice($index,1);">Delete</button>
+</div>
+<a href="books">books</a>
