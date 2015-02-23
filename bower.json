@@ -1,0 +1,24 @@
+{
+  "name": "intro_js_talk",
+  "version": "0.0.0",
+  "authors": [
+    "Delmer Reed <delmer814@yahoo.com>"
+  ],
+  "description": "an intro js talk",
+  "keywords": [
+    "js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "angular": "~1.3.13",
+    "angular-route": "~1.3.13"
+  }
+}

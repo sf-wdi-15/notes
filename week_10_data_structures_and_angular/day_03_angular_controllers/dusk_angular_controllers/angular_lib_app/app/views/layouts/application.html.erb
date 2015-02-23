@@ -25,10 +25,10 @@
       <button>Add Book</button>
     </div>
   </form> 
-  {{newBook}}  
+  {{newBook}} 
 
   <div ng-repeat="book in books">
-    <div class="book"></div>
+    <div class="book"></div> <button ng-click="books.splice($index,1);">DELETE</button>
   </div> 
   </div>
 </body>
