@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+# Check Notes repo for proper folder structure
+require_relative("../../pre-commit-scripts/folders_structure.rb")
+require_relative("../../pre-commit-scripts/json_dir_builder.rb")
