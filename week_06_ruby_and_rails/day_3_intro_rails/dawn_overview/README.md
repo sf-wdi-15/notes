@@ -576,7 +576,7 @@ A controller method
 A view for showing a plane
 
 
-`app/views/show.html.erb`
+`app/views/planes/show.html.erb`
 		
 		<div>
 			Name: <%= @plane.name %> <br>
