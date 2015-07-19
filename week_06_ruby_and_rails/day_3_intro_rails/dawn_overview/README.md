@@ -492,7 +492,7 @@ We first need to setup our `#index` method in `planes`
 
 Let's finally put some `erb` in our `index` view.
 
-`app/views/index.html.erb`
+`app/views/planes/index.html.erb`
 	
 	<% @planes.each do |plane| %>
 		
